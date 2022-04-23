@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\GameBoardRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass=GameBoardRepository::class)
@@ -19,13 +20,11 @@ class GameBoard
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank
      */
     protected $linelenght;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     protected $board;
 
@@ -33,7 +32,7 @@ class GameBoard
      * @ORM\Column(type="boolean", nullable=false, options{"default" : 0})
      * @var boolean
      */
-    protected $isAvaible;
+    protected $isAvailable;
 
     /**
      * Return id board
@@ -58,8 +57,13 @@ class GameBoard
      * Return board like as string
      * @return string
      */
-    public function getBoard(): string
+    public function getBoard(): ?string
     {
         return $this->board;
+    }
+
+    public function isAvailable(): Boolean
+    {
+        return $this->isAvailable;
     }
 }
