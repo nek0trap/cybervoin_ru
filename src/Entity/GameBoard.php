@@ -29,7 +29,7 @@ class GameBoard
     protected $board;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false, options{"default" : 0})
+     * @ORM\Column(type="boolean", nullable=false, options={"default" : 0})
      * @var boolean
      */
     protected $isAvailable;
