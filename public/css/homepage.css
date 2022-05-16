@@ -1,0 +1,73 @@
+body {
+    margin: 100px 0 0 100px;
+}
+
+.nav{
+    border: 1px solid gray;
+}
+
+.main {
+    border-color: #222222;
+    font-size: 50px;
+    padding: 30px
+}
+
+i {
+    font-size: 3rem;
+    alignment: center;
+}
+
+.icons {
+    text-align: center;
+}
+.p-2 {
+    border: 1px solid gray;
+    border-radius: 20px 20px 0 0;
+    background-color: lightgray;
+    height: 80px;
+    width: 80px;
+    margin-right: 5px;
+}
+
+.list {
+    height: 525px;
+    overflow-y: scroll;
+    padding: 30px
+}
+
+.game-label{
+    text-align: center;
+    border-radius: 30px 30px 0 0;
+}
+
+.main .game-label{
+    font-size: 50px;
+}
+
+.main .game-label .name-label{
+    font-size: 70px;
+}
+
+
+.game-label .list-group .list-group-item{
+    margin: 5px;
+    background-color: rgba(80, 80, 80, 0.5);
+}
+
+
+.list .list-group-item{
+    background-color: rgba(100, 100, 100, 0);
+}
+
+.game-label .list-group-item{
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
+.list .list-group-item{
+    border: none;
+}
+
+
+.game-label .name-label {
+    background-color: rgba(80, 80, 80, 0.5);
+}
