@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,7 +16,10 @@ class CharType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('');
+            ->add('health', IntegerType::class)
+            ->add('bio', TextareaType::class)
+            ->add('wounded', IntegerType::class)
+            ->add('deathsave', IntegerType::class)
+            ->add('SAVE', SubmitType::class);
     }
-
 }

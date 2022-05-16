@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+
+            <div class="col">
+                {{ form(formStep1, {'action' : path('gameM_create_char'), 'method': 'POST'}) }}
+            </div>
+
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
