@@ -70,7 +70,7 @@ class UserCreateCommand extends Command
         $this->em->persist($user);
         $this->em->flush();
 
-        $io->success('[OK] USER CREATE');
+        $io->success('USER CREATE');
 
         return 0;
     }

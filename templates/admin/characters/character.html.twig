@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CyberPlatform</title>
+    {% block stylesheets %}
+        <link href="{{ asset('/css/character-style.css') }}" rel="stylesheet"/>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <a href="{{  path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
+    <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
+    <section class="main-row">
+        <section class="logo-and-userpic col-1">
+            <div class="logo">Logotipchik</div>
+            <div class="userpic">User avatar</div>
+        </section>
+        <section class="col-2">
+            <section class="1st-row row">
+                <section class="charname-charclass">
+                    <div class="char-name">{{ charcter.name }}</div>
+                    <div class="char-class">{{ charcter.id }}</div>
+                </section>
+                <section class="hp-status">
+                    <section class="starting-hits hp-status-box">
+                        <div class="starting-hits-label hp-status-box-label">starting hits</div>
+                        <div class="hp-status-num">{{ charcter.health }}</div>
+                    </section>
+                    <section class="seriously-wounded hp-status-box">
+                        <div class="starting-hits-label hp-status-box-label">seriously wounded</div>
+                        <div class="hp-status-num">{{ charcter.wounded }}</div>
+                    </section>
+                    <section class="death-save hp-status-box">
+                        <div class="starting-hits-label hp-status-box-label">death save</div>
+                        <div class="hp-status-num">{{ charcter.deathsave }}</div>
+                    </section>
+                </section>
+            </section>
+            <section class="stats nd2-row row">
+                <div class="int-statbox statbox">
+                    <div class="int-statbox-label statbox-label">int</div>
+                    <div class="int-status status-box">{{ charcter.id }}</div>
+                </div>
+                <div class="ref-statbox statbox">
+                    <div class="ref-statbox-label statbox-label">ref</div>
+{#                    <div class="ref-status status-box">{{ charcter['ref'] }}</div>#}
+                </div>
+                <div class="dex-statbox statbox">
+                    <div class="dex-statbox-label statbox-label">dex</div>
+{#                    <div class="dex-status status-box">{{ charcter['dex'] }}</div>#}
+                </div>
+                <div class="tech-statbox statbox">
+                    <div class="tech-statbox-label statbox-label">tech</div>
+{#                    <div class="tech-status status-box">{{ charcter['tech'] }}</div>#}
+                </div>
+                <div class="cool-statbox statbox">
+                    <div class="cool-statbox-label statbox-label">cool</div>
+{#                    <div class="cool-status status-box">{{ charcter['cool'] }}</div>#}
+                </div>
+                <div class="will-statbox statbox">
+                    <div class="will-statbox-label statbox-label">will</div>
+{#                    <div class="will-status status-box">{{ charcter['will'] }}</div>#}
+                </div>
+                <div class="luck-statbox statbox">
+                    <div class="luck-statbox-label statbox-label">luck</div>
+{#                    <div class="luck-status status-box">{{ charcter['luck'] }}</div>#}
+                </div>
+                <div class="move-statbox statbox">
+                    <div class="move-statbox-label statbox-label">move</div>
+{#                    <div class="move-status status-box">{{ charcter['move'] }}</div>#}
+                </div>
+                <div class="body-statbox statbox">
+                    <div class="body-statbox-label statbox-label">body</div>
+{#                    <div class="body-status status-box">{{ charcter['body'] }}</div>#}
+                </div>
+                <div class="emp-statbox statbox">
+                    <div class="emp-statbox-label statbox-label">emp</div>
+{#                    <div class="emp-status status-box">{{ charcter['emp'] }}</div>#}
+                </div>
+            </section>
+            <section class="3rd-row row">
+                <section class="skills">
+                    <div class="skills-label">Skills</div>
+{#                    {% for skill in charcter.skills %}#}
+                        <div>
+{#                            {{ skill }}#}
+                        </div>
+{#                    {% endfor %}#}
+                </section>
+                <section class="armor armor-weapons">
+                    <div class="armor-label">armor</div>
+{#                    {% for item in charcter.armor %}#}
+                        <div>
+{#                            {{ item }}#}
+                        </div>
+{#                    {% endfor %}#}
+                </section>
+                <section class="weapons armor-weapons">
+                    <div class="weapons-label">weapons</div>
+{#                    {% for gun in charcter.weapons %}#}
+                        <div>
+{#                            {{ gun }}#}
+                        </div>
+{#                    {% endfor %}#}
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="side-row">
+        <section class="bio">
+            <div class="bio-label">{{ charcter.bio }}</div>
+        </section>
+        <section class="cyberware cyberware-gear">
+            <div class="cyberware-label">cyberware</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </section>
+        <section class="gear cyberware-gear">
+            <div class="gear-label">gear</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </section>
+    </section>
+{% endblock %}
+</body>
+</html>
