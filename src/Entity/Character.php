@@ -78,6 +78,8 @@ class Character
      */
     private $author;
 
+    private $weaponTmp;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -225,5 +227,19 @@ class Character
         $this->author = $author;
 
         return $this;
+    }
+
+    public function setWeapon(Weapon $weapon = null)
+    {
+        $dmg = $weapon->getDamage();
+        $name = $weapon->getName();
+        $tmpArr = array($name=>$dmg);
+        $this->setWeapons($tmpArr);
+
+    }
+
+    public function getWeapon()
+    {
+        return $this->weaponTmp;
     }
 }
