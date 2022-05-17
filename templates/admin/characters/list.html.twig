@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin: 10px auto; width: 50%">
+        <table>
+            <thead>
+            <tr>
+                <td>
+                    #id
+                </td>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Author
+                </td>
+                <td>
+                    Date
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for char in characters %}
+                <tr>
+                    <td>
+                        <a href="{{ path("admin_char_byId", {"id": char.id}) }}">{{ char.id }}</a>
+                        </td>
+                    <td>{{ char.Name }}</td>
+                    <td>{{ char.Author }}</td>
+                    <td>{{ char.DateCreateChar }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
