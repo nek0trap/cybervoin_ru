@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f2a5e04-a66f-4d89-929e-8471d69b4a20" name="Changes" comment="just commit v-4">
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+    <list default="true" id="4f2a5e04-a66f-4d89-929e-8471d69b4a20" name="Changes" comment="just commit v-3">
+      <change afterPath="$PROJECT_DIR$/src/Controller/AvatarsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/GameBoardType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/WeaponType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameMasterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMasterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/testController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/testController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Character.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Character.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Weapon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Weapon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CharType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CharType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/characters/character.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/characters/character.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/gamemaster/character_list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gamemaster/character_list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/gamemaster/createForm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gamemaster/createForm.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,16 +192,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="PHPUnit.phpunit.xml.dist">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
@@ -207,7 +217,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652793423775</updated>
       <workItem from="1652793426183" duration="3905000" />
-      <workItem from="1652954035424" duration="5277000" />
+      <workItem from="1652954035424" duration="17385000" />
     </task>
     <task id="LOCAL-00001" summary="create stats and weapons for char">
       <created>1652957724943</created>
@@ -237,7 +247,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652958572668</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="just commit v-3">
+      <created>1652959406897</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652959406897</updated>
+    </task>
+    <task id="LOCAL-00006" summary="just commit v-3">
+      <created>1652959500828</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652959500828</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +331,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create stats and weapons for char" />
     <MESSAGE value="just commit v-4" />
-    <option name="LAST_COMMIT_MESSAGE" value="just commit v-4" />
+    <MESSAGE value="just commit v-3" />
+    <option name="LAST_COMMIT_MESSAGE" value="just commit v-3" />
   </component>
 </project>
