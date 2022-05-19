@@ -38,7 +38,7 @@ class GameMasterController extends AbstractController
     }
 
     /**
-     * @Route("/game/character/form", name="gameM_create_char")
+     * @Route("/game/character/form", name="gamemaster_create_char")
      */
 
     public function charForm(Request $request): Response
