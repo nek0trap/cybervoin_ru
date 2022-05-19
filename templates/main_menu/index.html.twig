@@ -13,7 +13,8 @@
                 <a href="{{ path("admin_char_list") }}">Characters List</a>
             {%endif %}
             {% if role == 'ROLE_GAMEMASTER' %}
-                <a href="{{ path("gameM_create_char") }}">Create Character for game</a>
+                <a href="{{ path("gamemaster_create_char") }}">Create Character for game</a> <br>
+                <a href="{{ path("gamemaster_character_list") }}">Character List</a>
             {% endif %}
     {% endfor %}</p>
 
