@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Character;
+use App\Entity\StatChar;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -11,19 +15,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-class testController
+class testController extends AbstractController
 {
     /**
-     * @Route("/number")
+     * @Route("/stat")
      */
-    public function number(): Response
+    public function number(Request $request): Response
     {
-        $number = random_int(0, 100);
-
+        $id = 1;
+        $stats = $this->getDoctrine()->getManager()->find(StatChar::class, $id);
+        dd($stats);
         return new Response(
-            '<html><body>Lucky number: '.$number.'</body></html>'
+            '<html><body>Lucky number: '.$stats.'</body></html>'
         );
     }
-    
+
 
 }

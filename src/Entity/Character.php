@@ -78,6 +78,11 @@ class Character
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="text", nullable=true))
+     */
+    private $urlAvatar;
+
     private $weaponTmp;
 
     public function getId(): ?int
@@ -174,8 +179,9 @@ class Character
         return $this->stats;
     }
 
-    public function setStats(array $stats): self
+    public function setStats(StatChar $st): self
     {
+        $stats = $st->getStats();
         $this->stats = $stats;
 
         return $this;
@@ -241,5 +247,16 @@ class Character
     public function getWeapon()
     {
         return $this->weaponTmp;
+    }
+
+    public function setURLAvatar(string $url): self
+    {
+        $this->urlAvatar = $url;
+        return $this;
+    }
+
+    public function getURLAvatar(): ?string
+    {
+        return $this->urlAvatar;
     }
 }

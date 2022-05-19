@@ -9,7 +9,7 @@
 </head>
 <body>
 {% block body %}
-    <a href="{{  path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
+    <a href="{{ path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
     <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
     <section class="main-row">
         <section class="logo-and-userpic col-1">
@@ -38,46 +38,12 @@
                 </section>
             </section>
             <section class="stats nd2-row row">
-                <div class="int-statbox statbox">
-                    <div class="int-statbox-label statbox-label">int</div>
-                    <div class="int-status status-box">{{ charcter.id }}</div>
-                </div>
-                <div class="ref-statbox statbox">
-                    <div class="ref-statbox-label statbox-label">ref</div>
-{#                    <div class="ref-status status-box">{{ charcter['ref'] }}</div>#}
-                </div>
-                <div class="dex-statbox statbox">
-                    <div class="dex-statbox-label statbox-label">dex</div>
-{#                    <div class="dex-status status-box">{{ charcter['dex'] }}</div>#}
-                </div>
-                <div class="tech-statbox statbox">
-                    <div class="tech-statbox-label statbox-label">tech</div>
-{#                    <div class="tech-status status-box">{{ charcter['tech'] }}</div>#}
-                </div>
-                <div class="cool-statbox statbox">
-                    <div class="cool-statbox-label statbox-label">cool</div>
-{#                    <div class="cool-status status-box">{{ charcter['cool'] }}</div>#}
-                </div>
-                <div class="will-statbox statbox">
-                    <div class="will-statbox-label statbox-label">will</div>
-{#                    <div class="will-status status-box">{{ charcter['will'] }}</div>#}
-                </div>
-                <div class="luck-statbox statbox">
-                    <div class="luck-statbox-label statbox-label">luck</div>
-{#                    <div class="luck-status status-box">{{ charcter['luck'] }}</div>#}
-                </div>
-                <div class="move-statbox statbox">
-                    <div class="move-statbox-label statbox-label">move</div>
-{#                    <div class="move-status status-box">{{ charcter['move'] }}</div>#}
-                </div>
-                <div class="body-statbox statbox">
-                    <div class="body-statbox-label statbox-label">body</div>
-{#                    <div class="body-status status-box">{{ charcter['body'] }}</div>#}
-                </div>
-                <div class="emp-statbox statbox">
-                    <div class="emp-statbox-label statbox-label">emp</div>
-{#                    <div class="emp-status status-box">{{ charcter['emp'] }}</div>#}
-                </div>
+                {% for key, value in charcter.stats %}
+                    <div class="{{ key }}-statbox statbox">
+                        <div class="{{ key }}-statbox-label statbox-label">{{ key }}</div>
+                        <div class="{{ key }}-status status-box">{{ value }}</div>
+                    </div>
+                {% endfor %}
             </section>
             <section class="3rd-row row">
                 <section class="skills">
@@ -98,11 +64,11 @@
                 </section>
                 <section class="weapons armor-weapons">
                     <div class="weapons-label">weapons</div>
-{#                    {% for gun in charcter.weapons %}#}
+                    {% for key, gun in charcter.weapons %}
                         <div>
-{#                            {{ gun }}#}
+                            {{ key }}: {{ gun }}
                         </div>
-{#                    {% endfor %}#}
+                    {% endfor %}
                 </section>
             </section>
         </section>

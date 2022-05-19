@@ -3,6 +3,7 @@
 namespace App\Form;
 
 
+use App\Entity\StatChar;
 use App\Entity\Weapon;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -28,6 +29,14 @@ class CharType extends AbstractType
             ->add('deathsave', IntegerType::class)
             ->add('Weapon', EntityType::class,[
                 'class' => Weapon::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.id', 'ASC');
+                },
+                'choice_label' => 'name',
+            ])
+            ->add('stats', EntityType::class, [
+                'class' => StatChar::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->orderBy('p.id', 'ASC');

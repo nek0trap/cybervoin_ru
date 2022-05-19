@@ -77,10 +77,12 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/characters/{id}/edit", name="admin_char_byId_delete")
+     * @Route("/admin/characters/{id}/delete", name="admin_char_byId_delete")
      */
     public function deleteCharById($id): Response
     {
+        $strng = "NOT WORKED";
+        dd($strng);
         $char = $this->getDoctrine()->getManager()->find(Character::class, $id);
 
         if ($char === null) {

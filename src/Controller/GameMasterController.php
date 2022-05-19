@@ -21,17 +21,24 @@ class GameMasterController extends AbstractController
 
 
     /**
-     * @Route("/game/create", name="gameM_menu")
+     * @Route("/game/character/list", name="gamemaster_character_list")
      */
     public function index(): Response
     {
-        return $this->render('game_master/index.html.twig', [
-            'controller_name' => 'GameMasterController',
+        $user = $this->security->getUser();
+
+        $chars = $this->getDoctrine()->getManager()
+            ->getRepository(Character::class)
+            ->findBy(['author' => $user->getId()],[]);
+
+
+        return $this->render('admin/characters/list.html.twig', [
+            'characters' => $chars,
         ]);
     }
 
     /**
-     * @Route("/game/char/form", name="gameM_create_char")
+     * @Route("/game/character/form", name="gameM_create_char")
      */
 
     public function charForm(Request $request): Response
@@ -49,6 +56,8 @@ class GameMasterController extends AbstractController
 
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('gamemaster_character_list');
         }
 
         return $this->render('gamemaster/createForm.html.twig', [
