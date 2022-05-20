@@ -8,6 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+
+    /**
+     * @Route("/mm", name="main_menu")
+     */
+    public function showMenu(): Response
+    {
+        return $this->render('main_menu/index.html.twig', [
+            'controller_name' => 'MainMenuController',
+        ]);
+    }
+
+
     /**
      * @Route("/", name="home_page")
      */
