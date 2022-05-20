@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CharacterRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,23 +84,6 @@ class Character
     private $urlAvatar;
 
     private $weaponTmp;
-
-    protected $weaponsArray;
-
-    public function __construct()
-    {
-        $this->weaponsArray = new ArrayCollection();
-    }
-
-
-    public function getGuns(): ArrayCollection
-    {
-        if (isset($this->weaponsArray))
-        {
-            $this->setWeapons((array)$this->weaponsArray);
-        }
-        return $this->weaponsArray;
-    }
 
     public function getId(): ?int
     {
@@ -257,8 +239,7 @@ class Character
     {
         $dmg = $weapon->getDamage();
         $name = $weapon->getName();
-        $tmpArr = $this->getWeapons();
-        $tmpArr[] = [$name => $dmg];
+        $tmpArr = array($name=>$dmg);
         $this->setWeapons($tmpArr);
 
     }

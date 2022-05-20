@@ -66,9 +66,7 @@
                     <div class="weapons-label">weapons</div>
                     {% for key, gun in charcter.weapons %}
                         <div>
-                            {% for name, damage in gun %}
-                                {{ name }}: {{ damage }}
-                            {% endfor %}
+                            {{ key }}: {{ gun }}
                         </div>
                     {% endfor %}
                 </section>

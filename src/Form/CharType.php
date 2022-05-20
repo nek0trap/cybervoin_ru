@@ -5,7 +5,6 @@ namespace App\Form;
 
 use App\Entity\StatChar;
 use App\Entity\Weapon;
-use App\Repository\WeaponRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -25,13 +24,16 @@ class CharType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('health', IntegerType::class)
+            ->add('bio', TextareaType::class)
             ->add('wounded', IntegerType::class)
             ->add('deathsave', IntegerType::class)
-            ->add('guns', CollectionType::class, [
-                'entry_type' => WeaponType::class,
-                'allow_add' => true,
-                'prototype' => true,
-                'entry_options' => ['label' => false]
+            ->add('Weapon', EntityType::class,[
+                'class' => Weapon::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.id', 'ASC');
+                },
+                'choice_label' => 'name',
             ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,
@@ -40,18 +42,7 @@ class CharType extends AbstractType
                         ->orderBy('p.id', 'ASC');
                 },
                 'choice_label' => 'name',
-                'label' => 'Preset',
             ])
-            ->add('bio', TextareaType::class)
             ->add('SAVE', SubmitType::class);
     }
 }
-
-//            ->add('weapon', EntityType::class, [
-//'class' => Weapon::class,
-//                'query_builder' => function (EntityRepository $er) {
-//    return $er->createQueryBuilder('p')
-//        ->orderBy('p.id', 'ASC');
-//},
-//                'choice_label' => 'name',
-//            ])

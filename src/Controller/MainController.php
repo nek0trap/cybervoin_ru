@@ -13,11 +13,13 @@ class MainController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->redirectToRoute("main_menu");
+        return $this->render('character-sheet.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
     }
 
     /**
-     * @Route("/showCharacter", name="eg_char")
+     * @Route("/showCharacter", name="home_page")
      */
     public function showCharacter(): Response
     {
