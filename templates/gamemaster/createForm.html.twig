@@ -12,11 +12,14 @@
 
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <ul class="tags" data-index="{{ form.guns|length > 0 ? form.guns|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.guns.vars.prototype)|e('html_attr') }}">
+                <ul class="tags"
+                    data-index="{{ form.guns|length > 0 ? form.guns|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(form.guns.vars.prototype)|e('html_attr') }}"
+                    data-widget-couner="{{ form.guns|length }}">
                     {% for gun in form.guns %}
                         <li>{{ form_row(gun) }}</li>
                     {% endfor %}
-                    <button type="button" class="add_item_link" data-collection-holder-class="gun">Add a gun</button>
+                    <button type="button" class="add-another-collection-widget" data-collection-holder-class="gun">Add a gun</button>
                 </ul>
                 {{ form_end(form) }}
             </div>
@@ -26,4 +29,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/add-collection-widget.js') }}"></script>
 {% endblock %}
