@@ -115,7 +115,7 @@ class GameMasterController extends AbstractController
             $this->getDoctrine()->getManager()->persist($game);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('gamemaster_game_list');
+            return $this->redirectToRoute('gamemaster_list_game');
         }
 
         return $this->render('gamemaster/createForm.html.twig', [
@@ -125,7 +125,7 @@ class GameMasterController extends AbstractController
     }
 
     /**
-     * @Route("/game/list", name="gamemaster_game_list")
+     * @Route("/game/list", name="gamemaster_list_game")
      */
     public function showGames(): Response
     {
@@ -134,7 +134,27 @@ class GameMasterController extends AbstractController
 
         return $this->render('gamemaster/games_list.html.twig', [
             'games' => $games,
-
         ]);
+    }
+
+    /**
+     * @Route("/game/{id}", name="game_byId")
+     */
+
+    public function getGameById($id): Response
+    {
+
+        $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['id' => $id], []);
+        $user = $this->security->getUser();
+        if($game[0]->getGameadmin() !== $user->getId())
+        {
+            return $this->redirectToRoute("gamemaster_list_game");
+        }
+
+
+
+        return $this->render('gamemaster/game.html.twig', [
+            'game' => $game[0],
+            ]);
     }
 }

@@ -6,7 +6,7 @@
     <p style="padding: 0px 300px; float: right"> <span class="badge badge-info">Info</span> Your roles in system: <br>
         {% for role in app.user.roles %}
             <br>
-            {{ role }} <br>
+            <span class="badge badge-success">Success</span> {{ role }} <br>
             {% if role == 'ROLE_ADMIN' %}
                 <a href="/admin">Admin Panel</a> <br>
                 <a href="/admin/help/createUser">Create User</a><br>
@@ -14,7 +14,9 @@
             {%endif %}
             {% if role == 'ROLE_GAMEMASTER' %}
                 <a href="{{ path("gamemaster_create_char") }}">Create Character for game</a> <br>
-                <a href="{{ path("gamemaster_character_list") }}">Character List</a>
+                <a href="{{ path("gamemaster_character_list") }}">Character List</a> <br>
+                <a href="{{ path("gamemaster_create_game") }}">Create new game</a> <br>
+                <a href="{{ path("gamemaster_list_game") }}">View all game</a>
             {% endif %}
     {% endfor %}</p>
 
