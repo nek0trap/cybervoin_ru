@@ -43,7 +43,7 @@ class Game
     private $players = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $gameadmin;
 
@@ -125,6 +125,18 @@ class Game
     public function setGameadmin(int $gameadmin): self
     {
         $this->gameadmin = $gameadmin;
+
+        return $this;
+    }
+
+    public function getGameboard(): ?string
+    {
+        return $this->gameBoard;
+    }
+
+    public function setGameboard(GameBoard $gb): self
+    {
+        $this->gameBoard = $gb->getBoard();
 
         return $this;
     }

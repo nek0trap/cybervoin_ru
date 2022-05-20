@@ -8,17 +8,7 @@
             </div>
 
             <div class="col">
-{#                {{ form(form, {'action' : path('gamemaster_create_char'), 'method': 'POST'}) }}#}
-
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <ul class="tags" data-index="{{ form.guns|length > 0 ? form.guns|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.guns.vars.prototype)|e('html_attr') }}">
-                    {% for gun in form.guns %}
-                        <li>{{ form_row(gun) }}</li>
-                    {% endfor %}
-                    <button type="button" class="add_item_link" data-collection-holder-class="gun">Add a gun</button>
-                </ul>
-                {{ form_end(form) }}
+                {{ form(form, {'action' : path(back_path), 'method': 'POST'}) }}
             </div>
 
             <div class="col">
