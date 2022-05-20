@@ -37,7 +37,6 @@ class UserWeaponCommand extends Command
             ->setDescription(self::$defaultDescription)
             ->addArgument('Damage', InputArgument::REQUIRED, 'Weapon Damage')
             ->addArgument('Name', InputArgument::REQUIRED, 'Weapon Name')
-            ->addArgument('Author', InputArgument::REQUIRED, 'Author ID acc')
         ;
     }
 
@@ -47,11 +46,9 @@ class UserWeaponCommand extends Command
 
         $damage = $input->getArgument('Damage');
         $name = $input->getArgument('Name');
-        $author = (int)$input->getArgument('Author');
 
 
         $weapon = new Weapon();
-        $weapon->setAuthor($author);
         $weapon->setDamage($damage);
         $weapon->setName($name);
 
