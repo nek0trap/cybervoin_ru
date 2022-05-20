@@ -8,14 +8,14 @@
             </div>
 
             <div class="col">
-{#                {{ form(form, {'action' : path('gamemaster_create_char'), 'method': 'POST'}) }}#}
+               {# {{ form(form, {'action' : path(back_path), 'method': 'POST'}) }} #}
 
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 <ul class="tags"
                     data-index="{{ form.guns|length > 0 ? form.guns|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.guns.vars.prototype)|e('html_attr') }}"
-                    data-widget-couner="{{ form.guns|length }}">
+                    data-widget-counter="{{ form.guns|length }}">
                     {% for gun in form.guns %}
                         <li>{{ form_row(gun) }}</li>
                     {% endfor %}

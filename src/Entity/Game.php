@@ -43,14 +43,20 @@ class Game
     private $players = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $gameadmin;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="text")
      */
     private $gameBoard;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $lineLength;
 
     public function getId(): ?int
     {
@@ -125,6 +131,28 @@ class Game
     public function setGameadmin(int $gameadmin): self
     {
         $this->gameadmin = $gameadmin;
+
+        return $this;
+    }
+
+    public function getGameboard(): ?string
+    {
+        return $this->gameBoard;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLineLength(): ?int
+    {
+        return $this->lineLength;
+    }
+
+
+    public function setGameboard(GameBoard $gb): self
+    {
+        $this->lineLength = $gb->getLineLenght();
+        $this->gameBoard = $gb->getBoard();
 
         return $this;
     }

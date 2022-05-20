@@ -19,12 +19,17 @@ class GameBoard
     protected $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $linelenght;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     protected $board;
 
@@ -52,6 +57,16 @@ class GameBoard
         return $this->linelenght;
     }
 
+    /**
+     * @param mixed $linelenght
+     */
+    public function setLinelenght($linelenght): void
+    {
+        $this->linelenght = $linelenght;
+    }
+
+
+
 
     /**
      * Return board like as string
@@ -62,8 +77,40 @@ class GameBoard
         return $this->board;
     }
 
+    /**
+     * @param mixed $board
+     */
+    public function setBoard($board): void
+    {
+        $this->board = $board;
+    }
+
+
+
     public function isAvailable(): Boolean
     {
         return $this->isAvailable;
+    }
+
+    /**
+     * @param bool $isAvailable
+     */
+    public function setIsAvailable(bool $isAvailable = false): void
+    {
+        $this->isAvailable = $isAvailable;
+    }
+
+
+
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
     }
 }
