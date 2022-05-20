@@ -25,10 +25,14 @@ class testController extends AbstractController
         $id = 1;
         $stats = $this->getDoctrine()->getManager()->find(StatChar::class, $id);
         dd($stats);
-        return new Response(
-            '<html><body>Lucky number: '.$stats.'</body></html>'
-        );
     }
 
 
+    /**
+     * @Route("/showPage")
+     */
+    public function showPage(): Response
+    {
+        return $this->render('library.html.twig');
+    }
 }
