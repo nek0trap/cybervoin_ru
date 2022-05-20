@@ -27,11 +27,6 @@ class Weapon
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $author;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -57,18 +52,6 @@ class Weapon
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?int
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(int $author): self
-    {
-        $this->author = $author;
 
         return $this;
     }
