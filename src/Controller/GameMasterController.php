@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Character;
+use App\Entity\Game;
 use App\Entity\GameBoard;
 use App\Entity\Weapon;
 use App\Form\CharType;
@@ -117,6 +118,19 @@ class GameMasterController extends AbstractController
 
         return $this->render('gamemaster/createForm.html.twig', [
             'formStep1' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/game/list", name="gamemaster_game_list")
+     */
+    public function showGames(): Response
+    {
+        $user = $this->security->getUser();
+        $games = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['author'=>$user->getId()]);
+
+        return $this->render('gamemaster/games_list.html.twig', [
+            'games' => $games,
         ]);
     }
 }
