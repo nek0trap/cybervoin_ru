@@ -31,7 +31,7 @@ class CharType extends AbstractType
                 'entry_type' => WeaponType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'entry_options' => ['label' => false]
+                'entry_options' => ['label' => true]
             ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,

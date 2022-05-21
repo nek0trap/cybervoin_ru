@@ -4,28 +4,21 @@
     <div class="container">
         <div class="row">
             <div class="col">
-
             </div>
-
             <div class="col">
-               {# {{ form(form, {'action' : path(back_path), 'method': 'POST'}) }} #}
-
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <ul class="tags"
-                    data-index="{{ form.guns|length > 0 ? form.guns|last.vars.name + 1 : 0 }}"
-                    data-prototype="{{ form_widget(form.guns.vars.prototype)|e('html_attr') }}"
-                    data-widget-counter="{{ form.guns|length }}">
-                    {% for gun in form.guns %}
-                        <li>{{ form_row(gun) }}</li>
-                    {% endfor %}
-                    <button type="button" class="add-another-collection-widget" data-collection-holder-class="gun">Add a gun</button>
+             {{ form_row(char_create_form, {'action' : path(back_path), 'method': 'POST'}) }}
+                {{ form_start(char_create_form) }}
+                <ul id="weapon-fields-list"
+                    data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|first }}"
+                    data-widget-tags="{{ '<li></li>'|e }}"
+                    data-widget-counter="{{ char_create_form.guns|length }}">
+                        <li>
+                            {{ form_row(char_create_form.guns)|first }}
+                        </li>
                 </ul>
-                {{ form_end(form) }}
+                <button type="button" class="btn btn-primary add-another-collection-widget" data-collection-holder-class="gun">Add a gun</button>
             </div>
-
             <div class="col">
-
             </div>
         </div>
     </div>
