@@ -43,24 +43,23 @@ class GameMasterController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/game/character/form", name="gamemaster_create_char")
      */
-
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
-
+//        $tmpWeapon = new Weapon("Weapon 1");
+//        $tmpChar->getGuns()->add($tmpWeapon);
         $weapons = $this->getDoctrine()->getManager()
             ->getRepository(Weapon::class)
-            ->findBy([],[]);
-
+            ->findBy(['id'=> 1]);
 
         foreach ($weapons as $weapon)
         {
             $tmpChar->getGuns()->add($weapon);
         }
-
 
 
         $form = $this->createForm(CharType::class, $tmpChar);
@@ -90,7 +89,7 @@ class GameMasterController extends AbstractController
         }
 
         return $this->render('gamemaster/createForm.html.twig', [
-            'form' => $form->createView(),
+            'char_create_form' => $form->createView(),
             'back_path' => 'gamemaster_create_char'
         ]);
     }
