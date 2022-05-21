@@ -67,7 +67,12 @@
                     {% for key, gun in charcter.weapons %}
                         <div>
                             {% for name, damage in gun %}
-                                {{ name }}: {{ damage }}
+                                {{ name }}
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for name, damage in gun %}
+                                {{ damage }}
                             {% endfor %}
                         </div>
                     {% endfor %}
