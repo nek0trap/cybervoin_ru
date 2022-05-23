@@ -8,14 +8,6 @@
             <div class="col">
                 {{ form_start(char_create_form) }}
              {{ form_row(char_create_form, {'action' : path(back_path), 'method': 'POST'}) }}
-                <ul id="weapon-fields-list"
-                    data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|first }}"
-                    data-widget-tags="{{ '<li></li>'|e }}"
-                    data-widget-counter="{{ char_create_form.guns|length }}">
-                        <li>
-                            {{ form_row(char_create_form.guns) }}
-                        </li>
-                </ul>
                 <button type="button" class="btn btn-primary add-another-collection-widget" data-collection-holder-class="gun">Add a gun</button>
             </div>
             {{ form_end(char_create_form) }}

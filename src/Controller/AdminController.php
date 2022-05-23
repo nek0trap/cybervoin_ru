@@ -81,7 +81,7 @@ class AdminController extends AbstractController
      */
     public function deleteCharById($id): Response
     {
-        $strng = "NOT WORKED";
+        $strng = "IS NOT WORKING";
         dd($strng);
         $char = $this->getDoctrine()->getManager()->find(Character::class, $id);
 
