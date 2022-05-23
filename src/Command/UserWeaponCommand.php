@@ -47,7 +47,6 @@ class UserWeaponCommand extends Command
         $damage = $input->getArgument('Damage');
         $name = $input->getArgument('Name');
 
-
         $weapon = new Weapon();
         $weapon->setDamage($damage);
         $weapon->setName($name);

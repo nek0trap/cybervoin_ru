@@ -84,15 +84,23 @@ class Character
      */
     private $urlAvatar;
 
-    private $weaponTmp;
-
     protected $weaponsArray;
+    protected $armorCollection;
 
     public function __construct()
     {
         $this->weaponsArray = new ArrayCollection();
+        $this->armorCollection = new ArrayCollection();
     }
 
+    public function getCharacterArmor() : ArrayCollection
+    {
+        if (isset($this->armorCollection))
+        {
+            $this->setArmor((array)$this->armorCollection);
+        }
+        return $this->armorCollection;
+    }
 
     public function getGuns(): ArrayCollection
     {

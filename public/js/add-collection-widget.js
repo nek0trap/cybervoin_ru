@@ -1,10 +1,9 @@
 // add-collection-widget.js
 jQuery(document).ready(function () {
-    jQuery('.add-another-collection-widget').click(function () {
+    jQuery('.add-another-weapon').click(function () {
         var list = $('#char_guns');
         var counter = list.data('widget-counter') || list.children().length + 1;
         var newWidget = list.attr('data-prototype');
-        console.log(newWidget);
         newWidget = newWidget.replace(/__name__label__/g, "Gun " + counter);
         newWidget = newWidget.replace(/__name__/g, counter);
 

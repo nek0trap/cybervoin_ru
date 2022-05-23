@@ -7,9 +7,15 @@
             </div>
             <div class="col">
                 {{ form_start(char_create_form) }}
-             {{ form_row(char_create_form, {'action' : path(back_path), 'method': 'POST'}) }}
-                <button type="button" class="btn btn-primary add-another-collection-widget" data-collection-holder-class="gun">Add a gun</button>
+                {{ form_row(char_create_form, {'action' : path(back_path), 'method': 'POST'}) }}
+                <button type="button" class="btn btn-primary add-another-weapon" data-collection-holder-class="gun">Add a gun</button>
             </div>
+
+            {% for armor in char_create_form.armor %}
+                <li>
+                    <div>armor</div>
+                </li>
+            {% endfor %}
             {{ form_end(char_create_form) }}
             <div class="col">
             </div>

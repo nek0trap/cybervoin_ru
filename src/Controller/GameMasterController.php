@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Armor;
 use App\Entity\Character;
 use App\Entity\Game;
 use App\Entity\GameBoard;
@@ -50,15 +52,21 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
-//        $tmpWeapon = new Weapon("Weapon 1");
-//        $tmpChar->getGuns()->add($tmpWeapon);
+
         $weapons = $this->getDoctrine()->getManager()
             ->getRepository(Weapon::class)
             ->findBy(['id'=> 1]);
-
         foreach ($weapons as $weapon)
         {
             $tmpChar->getGuns()->add($weapon);
+        }
+
+        $armors = $this->getDoctrine()->getManager()
+            ->getRepository(Armor::class)
+            ->findBy(['id'=> 1]);
+        foreach ($armors as $armor)
+        {
+            $tmpChar->getCharacterArmor()->add($armor);
         }
 
 
@@ -71,7 +79,6 @@ class GameMasterController extends AbstractController
         {
             $tmpChar->setAuthor($user->getId());
             $tmpChar->setDateCreateChar(time());
-
             $tmpGuns = $tmpChar->getGuns();
             $guns = array();
             foreach ($tmpGuns as $gun)
@@ -81,7 +88,6 @@ class GameMasterController extends AbstractController
             }
 
             $tmpChar->setWeapons($guns);
-
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
 

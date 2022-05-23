@@ -3,6 +3,7 @@
 namespace App\Form;
 
 
+use App\Entity\Armor;
 use App\Entity\StatChar;
 use App\Entity\Weapon;
 use App\Repository\WeaponRepository;
@@ -32,12 +33,18 @@ class CharType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
                 'label' => 'Guns:',
+                'entry_options' => [
+                    'label' => false
+                ],
             ])
             ->add('armor', CollectionType::class, [
-                'entry_type' => WeaponType::class,
+                'entry_type' => ArmorType::class,
                 'allow_add' => true,
                 'prototype' => true,
                 'label' => 'Armor:',
+                'entry_options' => [
+                    'label' => false
+                ],
             ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,
