@@ -20,112 +20,56 @@ class Armor
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $armorLabel;
+    private $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $armorHeadValue;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $armorHeadLabel;
+    private $head;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $armorBodyValue;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $armorBodyLabel;
+    private $body;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getArmorLabel()
+    public function getName(): ?string
     {
-        return $this->armorLabel;
+        return $this->name;
     }
 
-    /**
-     * @param mixed $armorLabel
-     */
-    public function setArmorLabel($armorLabel): void
+    public function setName(string $name): self
     {
-        $this->armorLabel = $armorLabel;
+        $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getArmorHeadValue()
+    public function getHead(): ?int
     {
-        return $this->armorHeadValue;
+        return $this->head;
     }
 
-    /**
-     * @param mixed $armorHeadValue
-     */
-    public function setArmorHeadValue($armorHeadValue): void
+    public function setHead(int $head): self
     {
-        $this->armorHeadValue = $armorHeadValue;
+        $this->head = $head;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getArmorHeadLabel()
+    public function getBody(): ?int
     {
-        return $this->armorHeadLabel;
+        return $this->body;
     }
 
-    /**
-     * @param mixed $armorHeadLabel
-     */
-    public function setArmorHeadLabel($armorHeadLabel): void
+    public function setBody(int $body): self
     {
-        $this->armorHeadLabel = $armorHeadLabel;
+        $this->body = $body;
+
+        return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getArmorBodyValue()
-    {
-        return $this->armorBodyValue;
-    }
-
-    /**
-     * @param mixed $armorBodyValue
-     */
-    public function setArmorBodyValue($armorBodyValue): void
-    {
-        $this->armorBodyValue = $armorBodyValue;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getArmorBodyLabel()
-    {
-        return $this->armorBodyLabel;
-    }
-
-    /**
-     * @param mixed $armorBodyLabel
-     */
-    public function setArmorBodyLabel($armorBodyLabel): void
-    {
-        $this->armorBodyLabel = $armorBodyLabel;
-    }
-
-
 }

@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity(repositoryClass=CharacterRepository::class)
  * @ORM\Table(name="`character`")
@@ -85,24 +84,24 @@ class Character
     private $urlAvatar;
 
     protected $weaponsArray;
-    protected $armorCollection;
+    protected $armorArray;
 
     public function __construct()
     {
-        $this->weaponsArray = new ArrayCollection();
-        $this->armorCollection = new ArrayCollection();
+        $this->weaponsArray= new ArrayCollection();
+        $this->armorArray= new ArrayCollection();
     }
 
-    public function getCharacterArmor() : ArrayCollection
+    public function getArmors(): ArrayCollection
     {
-        if (isset($this->armorCollection))
+        if (isset($this->armorArray))
         {
-            $this->setArmor((array)$this->armorCollection);
+            $this->setArmor((array)$this->armorArray);
         }
-        return $this->armorCollection;
+        return $this->armorArray;
     }
 
-    public function getGuns(): ArrayCollection
+    public function getGuns()
     {
         if (isset($this->weaponsArray))
         {
@@ -271,10 +270,6 @@ class Character
 
     }
 
-    public function getWeapon()
-    {
-        return $this->weaponTmp;
-    }
 
     public function setURLAvatar(string $url): self
     {

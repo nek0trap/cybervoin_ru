@@ -7,16 +7,40 @@
             </div>
             <div class="col">
                 {{ form_start(char_create_form) }}
-                {{ form_row(char_create_form, {'action' : path(back_path), 'method': 'POST'}) }}
-                <button type="button" class="btn btn-primary add-another-weapon" data-collection-holder-class="gun">Add a gun</button>
-            </div>
+                {{ form_row(char_create_form.name) }}
+                {{ form_row(char_create_form.health) }}
+                {{ form_row(char_create_form.wounded) }}
+                {{ form_row(char_create_form.deathsave) }}
+                {{ form_row(char_create_form.stats) }}
+                <div><button type="button"
+                             class="btn btn-primary add-another-gun">Add gun</button>
+                    <button type="button"
+                            class="btn btn-danger remove-another-gun">Delete gun</button>
+                </div>
+                <ul class="list-group list-group-flush" id="guns-list"
+                    data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|e }}"
+                    data-widget-tags="{{ '<li></li>'|e }}"
+                    data-widget-counter="{{ char_create_form.guns|length }}">
+                    {% for gun in char_create_form.guns %}
+                        <li class="list-group-item guns-list">
+                            {{ form_errors(gun) }}
+                            {{ form_widget(gun) }}
+                        </li>
+                    {% endfor %}
+                </ul>
 
-            {% for armor in char_create_form.armor %}
-                <li>
-                    <div>armor</div>
-                </li>
-            {% endfor %}
-            {{ form_end(char_create_form) }}
+
+                {% for ar in char_create_form.armors %}
+                    <li class="list-group-item guns-list">
+                        {{ form_errors(ar) }}
+                        {{ form_widget(ar) }}
+                    </li>
+                {% endfor %}
+
+                {{ form_row(char_create_form.bio) }}
+                {{ form_row(char_create_form.SAVE) }}
+                {{ form_end(char_create_form) }}
+            </div>
             <div class="col">
             </div>
         </div>

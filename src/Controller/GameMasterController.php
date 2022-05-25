@@ -11,6 +11,7 @@ use App\Entity\Weapon;
 use App\Form\CharType;
 use App\Form\GameBoardType;
 use App\Form\GameType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,23 +54,22 @@ class GameMasterController extends AbstractController
     {
         $tmpChar = new Character();
 
+
+
         $weapons = $this->getDoctrine()->getManager()
             ->getRepository(Weapon::class)
-            ->findBy(['id'=> 1]);
+            ->findBy([]);
         foreach ($weapons as $weapon)
         {
             $tmpChar->getGuns()->add($weapon);
         }
-
-        $armors = $this->getDoctrine()->getManager()
+        $armor = $this->getDoctrine()->getManager()
             ->getRepository(Armor::class)
-            ->findBy(['id'=> 1]);
-        foreach ($armors as $armor)
+            ->findBy([]);
+        foreach ($armor as $armorSet)
         {
-            $tmpChar->getCharacterArmor()->add($armor);
+            $tmpChar->getArmors()->add(($armorSet));
         }
-
-
         $form = $this->createForm(CharType::class, $tmpChar);
 
         $form->handleRequest($request);

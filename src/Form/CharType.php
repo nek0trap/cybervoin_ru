@@ -33,18 +33,12 @@ class CharType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
                 'label' => 'Guns:',
-                'entry_options' => [
-                    'label' => false
-                ],
             ])
-            ->add('armor', CollectionType::class, [
+            ->add('armors', CollectionType::class, [
                 'entry_type' => ArmorType::class,
-                'allow_add' => true,
-                'prototype' => true,
                 'label' => 'Armor:',
-                'entry_options' => [
-                    'label' => false
-                ],
+                'allow_add' => true,
+                'prototype' => false,
             ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,

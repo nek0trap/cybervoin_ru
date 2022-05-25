@@ -1,16 +1,20 @@
 // add-collection-widget.js
 jQuery(document).ready(function () {
-    jQuery('.add-another-weapon').click(function () {
-        var list = $('#char_guns');
-        var counter = list.data('widget-counter') || list.children().length + 1;
-        var newWidget = list.attr('data-prototype');
-        newWidget = newWidget.replace(/__name__label__/g, "Gun " + counter);
-        newWidget = newWidget.replace(/__name__/g, counter);
+    var list = $('#guns-list');
+    var gunCounter = list.data('widget-counter') || list.children().length;
+    jQuery('.add-another-gun').click(function () {
+        var newWidget = '<li class="list-group-item guns-list">' + list.attr('data-prototype') + '</li>';
+        console.log(newWidget)
+        newWidget = newWidget.replace(/__name__/g,gunCounter);
 
-        counter++;
+        gunCounter++;
         // And store it, the length cannot be used if deleting widgets is allowed
-        list.data('widget-counter', counter);
+        list.data('widget-counter', gunCounter);
         // create a new list element and add it to the list
         list.append(newWidget);
+    });
+    jQuery('.remove-another-gun').click(function () {
+        gunCounter--;
+        $('.guns-list').last().remove();
     });
 });
