@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="chessBoard" data-field="{{ gameboard.board }}" data-line="{{ gameboard.linelenght }}">
+        {{ gameboard.board }}
+    </div>
+{% endblock %}

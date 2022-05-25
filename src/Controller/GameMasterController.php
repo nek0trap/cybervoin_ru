@@ -145,10 +145,8 @@ class GameMasterController extends AbstractController
     /**
      * @Route("/game/{id}", name="game_byId")
      */
-
     public function getGameById($id): Response
     {
-
         $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['id' => $id], []);
         $user = $this->security->getUser();
         if($game[0]->getGameadmin() !== $user->getId())
@@ -156,10 +154,20 @@ class GameMasterController extends AbstractController
             return $this->redirectToRoute("gamemaster_list_game");
         }
 
-
-
         return $this->render('gamemaster/game.html.twig', [
             'game' => $game[0],
             ]);
+    }
+
+    /**
+     * @Route("/game/board/{id}", name="game_board_byId")
+     */
+    public function getGameBoardById($id): Response
+    {
+        $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
+
+        return $this->render('gamemaster/gameboard.html.twig', [
+            'gameboard' => $gameboard,
+        ]);
     }
 }
