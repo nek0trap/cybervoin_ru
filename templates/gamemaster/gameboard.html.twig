@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="{{ asset("css/board-style.css") }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
     <div id="chessBoard" data-field="{{ gameboard.board }}" data-line="{{ gameboard.linelenght }}">
-        {{ gameboard.board }}
     </div>
+    <script src="{{ asset("js/draw-board.js") }}"></script>
 {% endblock %}
