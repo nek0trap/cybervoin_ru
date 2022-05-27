@@ -80,8 +80,8 @@ class GameMasterController extends AbstractController
                 $tmp = array($gun->getName() => $gun->getDamage());
                 array_push($guns, $tmp);
             }
-            $tmpChar->setWeapons($guns);
 
+            $tmpChar->setWeapons($guns);
             $tmpArmors = $tmpChar->getArmors();
             $armors = array();
             foreach ($tmpArmors as $armor) {

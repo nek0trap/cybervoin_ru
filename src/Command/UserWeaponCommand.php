@@ -27,7 +27,6 @@ class UserWeaponCommand extends Command
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
-
         parent::__construct();
     }
 

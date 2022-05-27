@@ -275,7 +275,6 @@ class Character
 
     }
 
-
     public function setURLAvatar(string $url): self
     {
         $this->urlAvatar = $url;

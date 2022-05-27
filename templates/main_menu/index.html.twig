@@ -16,7 +16,9 @@
                 <a href="{{ path("gamemaster_create_char") }}">Create Character for game</a> <br>
                 <a href="{{ path("gamemaster_character_list") }}">Character List</a> <br>
                 <a href="{{ path("gamemaster_create_game") }}">Create new game</a> <br>
-                <a href="{{ path("gamemaster_list_game") }}">View all game</a>
+                <a href="{{ path("gamemaster_list_game") }}">View all game</a> <br>
+                <a href="{{ path("game_board_byId", {'id': 1}) }}">Test1</a>
+
             {% endif %}
     {% endfor %}</p>
 
