@@ -51,7 +51,12 @@ class Character
     /**
      * @ORM\Column(type="json")
      */
-    private $inventory = [];
+    private $cyberware = [];
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $gear = [];
 
     /**
      * @ORM\Column(type="json")

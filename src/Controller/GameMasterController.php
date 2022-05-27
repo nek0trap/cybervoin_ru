@@ -8,14 +8,11 @@ use App\Entity\Character;
 use App\Entity\Game;
 use App\Entity\GameBoard;
 use App\Entity\Weapon;
-use App\Form\CharType;
-use App\Form\GameBoardType;
+use App\Form\CharacterType;
 use App\Form\GameType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 
@@ -40,7 +37,6 @@ class GameMasterController extends AbstractController
             ->getRepository(Character::class)
             ->findBy(['author' => $user->getId()],[]);
 
-
         return $this->render('admin/characters/list.html.twig', [
             'characters' => $chars,
         ]);
@@ -53,8 +49,6 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
-
-
 
         $weapons = $this->getDoctrine()->getManager()
             ->getRepository(Weapon::class)
@@ -70,7 +64,7 @@ class GameMasterController extends AbstractController
         {
             $tmpChar->getArmors()->add(($armorSet));
         }
-        $form = $this->createForm(CharType::class, $tmpChar);
+        $form = $this->createForm(CharacterType::class, $tmpChar);
 
         $form->handleRequest($request);
         $user = $this->security->getUser();
@@ -86,8 +80,20 @@ class GameMasterController extends AbstractController
                 $tmp = array($gun->getName() => $gun->getDamage());
                 array_push($guns, $tmp);
             }
-
             $tmpChar->setWeapons($guns);
+
+            $tmpArmors = $tmpChar->getArmors();
+            $armors = array();
+            foreach ($tmpArmors as $armor) {
+                $tmp = [
+                    'name' => $armor->getName(),
+                    'body' => $armor->getBody(),
+                    'head' => $armor->getHead()
+                    ];
+                array_push($armors, $tmp);
+            }
+
+            $tmpChar->setArmor($armors);
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
 

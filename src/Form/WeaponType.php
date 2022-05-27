@@ -18,7 +18,6 @@ class WeaponType extends AbstractType
         $builder->add('damage', TextType::class, [
             'label' => 'Write Damage',
         ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
