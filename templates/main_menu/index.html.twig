@@ -3,7 +3,7 @@
 
 {% block body %}
     <p style="padding: 100px 300px"> Now, repository is in work , we try fast complete :) </p>
-    <p style="padding: 0px 300px; float: right"> <span class="badge badge-info">Info</span> Your roles in system: <br>
+    <p style="padding: 0 300px; float: right"> <span class="badge badge-info">Info</span> Your roles in system: <br>
         {% for role in app.user.roles %}
             <br>
             <span class="badge badge-success">Success</span> {{ role }} <br>

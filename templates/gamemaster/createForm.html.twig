@@ -3,57 +3,85 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
+            <div class="col" style="border: solid black 1px; padding: 10px; margin: 10px">
                 {{ form_start(char_create_form) }}
-                {{ form_row(char_create_form.name) }}
-                {{ form_row(char_create_form.health) }}
-                {{ form_row(char_create_form.wounded) }}
-                {{ form_row(char_create_form.deathsave) }}
-                {{ form_row(char_create_form.stats) }}
-                <div><button type="button"
-                             class="btn btn-primary add-another-gun">Add gun</button>
-                    <button type="button"
-                            class="btn btn-danger remove-another-gun">Delete gun</button>
+                <div class="fs-2 m-3">{{ form_row(char_create_form.name) }}</div>
+                <div class="row m-3">
+                    <div class="col">{{ form_row(char_create_form.health, {'label': 'Starting hits'}) }}</div>
+                    <div class="col">{{ form_row(char_create_form.wounded, {'label': 'Seriosly wounded'}) }}</div>
+                    <div class="col">{{ form_row(char_create_form.deathsave, {'label': 'Death save'}) }}</div>
                 </div>
-                <ul class="list-group list-group-flush" id="guns-list"
-                    data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|e }}"
-                    data-widget-tags="{{ '<li></li>'|e }}"
-                    data-widget-counter="{{ char_create_form.guns|length }}">
-                    {{ form_label(char_create_form.guns) }}
-                    {% for gun in char_create_form.guns %}
-                        <li class="list-group-item guns-list">
-                            {{ form_errors(gun) }}
-                            {{ form_widget(gun) }}
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                {{ form_label(char_create_form.armors) }}
-                {% for ar in char_create_form.armors %}
-                    <li class="list-group-item armor-list">
-                        {{ form_errors(ar) }}
-                        {{ form_widget(ar) }}
-                    </li>
-                {% endfor %}
-                <ul class="list-group list-group-flush" id="guns-list"
-                    data-prototype="{{ form_widget(char_create_form.cyberwares.vars.prototype)|e }}"
-                    data-widget-tags="{{ '<li></li>'|e }}"
-                    data-widget-counter="{{ char_create_form.guns|length }}">
-                    {{ form_label(char_create_form.cyberwares) }}
-                    {% for gun in char_create_form.cyberwares %}
-                        <li class="list-group-item guns-list">
-                            {{ form_errors(gun) }}
-                            {{ form_widget(gun) }}
-                        </li>
-                    {% endfor %}
-                </ul>
+                <div class="row m-3">
+                    {{ form_row(char_create_form.stats) }}
+                </div>
+                <div class="row inventory-buttons">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary add-another-guns">Add Gun</button>
+                        <button type="button" class="btn btn-danger remove-another-guns">Delete Gun</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary add-another-gear">Add Gear</button>
+                        <button type="button" class="btn btn-danger remove-another-gear">Delete Gear</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary add-another-cyberware">Add Cyberware</button>
+                        <button type="button" class="btn btn-danger remove-another-cyberware">Delete Cyberware</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush" id="guns-list"
+                            data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|e }}"
+                            data-widget-tags="{{ '<li></li>'|e }}"
+                            data-widget-counter="{{ char_create_form.guns|length }}">
+                            {{ form_label(char_create_form.guns) }}
+                            {% for gun in char_create_form.guns %}
+                                <li class="list-group-item guns-list">
+                                    {{ form_errors(gun) }}
+                                    {{ form_widget(gun) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {{ form_label(char_create_form.armors) }}
+                        {% for ar in char_create_form.armors %}
+                            <li class="list-group-item armor-list" style="border: none">
+                                {{ form_errors(ar) }}
+                                {{ form_widget(ar) }}
+                            </li>
+                        {% endfor %}
+                    </div>
+                <div class="col">
+                    <ul class="list-group list-group-flush" id="gear-list"
+                        data-prototype="{{ form_widget(char_create_form.gears.vars.prototype)|e }}"
+                        data-widget-tags="{{ '<li></li>'|e }}"
+                        data-widget-counter="{{ char_create_form.gears|length }}">
+                        {{ form_label(char_create_form.gears) }}
+                        {% for gear in char_create_form.gears %}
+                            <li class="list-group-item gear-list">
+                                {{ form_errors(gear) }}
+                                {{ form_widget(gear) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul class="list-group list-group-flush" id="cyberware-list"
+                        data-prototype="{{ form_widget(char_create_form.cyberwares.vars.prototype)|e }}"
+                        data-widget-tags="{{ '<li></li>'|e }}"
+                        data-widget-counter="{{ char_create_form.cyberwares|length }}">
+                        {{ form_label(char_create_form.cyberwares) }}
+                        {% for cyberware in char_create_form.cyberwares %}
+                            <li class="list-group-item cyberware-list">
+                                {{ form_errors(cyberware) }}
+                                {{ form_widget(cyberware) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                </div>
                 {{ form_row(char_create_form.bio) }}
-                {{ form_row(char_create_form.SAVE) }}
+                {{ form_widget(char_create_form.SAVE, { 'attr': {'class': 'btn btn-primary'}, 'label': 'Create'}) }}
                 {{ form_end(char_create_form) }}
-            </div>
-            <div class="col">
             </div>
         </div>
     </div>
