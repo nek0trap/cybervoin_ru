@@ -40,6 +40,18 @@ class CharacterType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
             ])
+            ->add('cyberwares', CollectionType::class, [
+                'entry_type' => CyberwareType::class,
+                'label' => 'Cyberware:',
+                'allow_add' => true,
+                'prototype' => true,
+            ])
+            ->add('gears', CollectionType::class, [
+                'entry_type' => GearType::class,
+                'label' => 'Gear:',
+                'allow_add' => true,
+                'prototype' => true,
+            ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,
                 'query_builder' => function (EntityRepository $er) {

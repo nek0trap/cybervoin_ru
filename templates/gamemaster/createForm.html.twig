@@ -21,6 +21,7 @@
                     data-prototype="{{ form_widget(char_create_form.guns.vars.prototype)|e }}"
                     data-widget-tags="{{ '<li></li>'|e }}"
                     data-widget-counter="{{ char_create_form.guns|length }}">
+                    {{ form_label(char_create_form.guns) }}
                     {% for gun in char_create_form.guns %}
                         <li class="list-group-item guns-list">
                             {{ form_errors(gun) }}
@@ -29,14 +30,25 @@
                     {% endfor %}
                 </ul>
 
-
+                {{ form_label(char_create_form.armors) }}
                 {% for ar in char_create_form.armors %}
-                    <li class="list-group-item guns-list">
+                    <li class="list-group-item armor-list">
                         {{ form_errors(ar) }}
                         {{ form_widget(ar) }}
                     </li>
                 {% endfor %}
-
+                <ul class="list-group list-group-flush" id="guns-list"
+                    data-prototype="{{ form_widget(char_create_form.cyberwares.vars.prototype)|e }}"
+                    data-widget-tags="{{ '<li></li>'|e }}"
+                    data-widget-counter="{{ char_create_form.guns|length }}">
+                    {{ form_label(char_create_form.cyberwares) }}
+                    {% for gun in char_create_form.cyberwares %}
+                        <li class="list-group-item guns-list">
+                            {{ form_errors(gun) }}
+                            {{ form_widget(gun) }}
+                        </li>
+                    {% endfor %}
+                </ul>
                 {{ form_row(char_create_form.bio) }}
                 {{ form_row(char_create_form.SAVE) }}
                 {{ form_end(char_create_form) }}

@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
-
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Armor;
 use App\Entity\Character;
+use App\Entity\Cyberware;
+use App\Form\CyberwareType;
+use App\Form\GearType;
 use App\Entity\Game;
 use App\Entity\GameBoard;
+use App\Entity\Gear;
 use App\Entity\Weapon;
 use App\Form\CharacterType;
 use App\Form\GameType;
@@ -64,6 +69,21 @@ class GameMasterController extends AbstractController
         {
             $tmpChar->getArmors()->add(($armorSet));
         }
+        $gears = $this->getDoctrine()->getManager()
+            ->getRepository(Gear::class)
+            ->findBy([]);
+        foreach ($gears as $gear)
+        {
+            $tmpChar->getGears()->add($gear);
+        }
+        $cyberwares = $this->getDoctrine()->getManager()
+            ->getRepository(Cyberware::class)
+            ->findBy([]);
+        foreach ($cyberwares as $cyberware)
+        {
+            $tmpChar->getCyberwares()->add($cyberware);
+        }
+
         $form = $this->createForm(CharacterType::class, $tmpChar);
 
         $form->handleRequest($request);
