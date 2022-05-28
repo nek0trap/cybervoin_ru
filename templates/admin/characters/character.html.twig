@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CyberPlatform</title>
+{% extends 'base.html.twig' %}
+
     {% block stylesheets %}
         <link href="{{ asset('/css/character-style.css') }}" rel="stylesheet"/>
     {% endblock %}
-</head>
-<body>
 {% block body %}
     <a href="{{ path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
     <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
@@ -56,24 +51,36 @@
                 </section>
                 <section class="armor armor-weapons">
                     <div class="armor-label">armor</div>
-{#                    {% for item in charcter.armor %}#}
-                        <div>
-{#                            {{ item }}#}
+                    {% for armor in charcter.armor %}
+                        <div class="row">
+                            {{ armor.name }}
                         </div>
-{#                    {% endfor %}#}
+                        <div class="row">
+                            <div class="col">
+                                <div> Head </div>
+                                <div> Body </div>
+                            </div>
+                            <div class="col">
+                                <div> {{ armor.head }} </div>
+                                <div> {{ armor.body }} </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </section>
                 <section class="weapons armor-weapons">
                     <div class="weapons-label">weapons</div>
                     {% for key, gun in charcter.weapons %}
-                        <div>
-                            {% for name, damage in gun %}
-                                {{ name }}
-                            {% endfor %}
-                        </div>
-                        <div>
-                            {% for name, damage in gun %}
-                                {{ damage }}
-                            {% endfor %}
+                        <div class="row">
+                            <div class="col">
+                                {% for name, damage in gun %}
+                                    {{ name }}
+                                {% endfor %}
+                            </div>
+                            <div class="col">
+                                {% for name, damage in gun %}
+                                    {{ damage }}
+                                {% endfor %}
+                            </div>
                         </div>
                     {% endfor %}
                 </section>
@@ -86,17 +93,21 @@
         </section>
         <section class="cyberware cyberware-gear">
             <div class="cyberware-label">cyberware</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+            {% for cyberware in charcter.cyberware %}
+                <div>
+                    <div>{{ cyberware.name }}</div>
+                    <div>{{ cyberware.description }}</div>
+                </div>
+            {% endfor %}
         </section>
         <section class="gear cyberware-gear">
             <div class="gear-label">gear</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+            {% for gear in charcter.gear %}
+                <div>
+                    <div>{{ gear.name }}</div>
+                    <div>{{ gear.description }}</div>
+                </div>
+            {% endfor %}
         </section>
     </section>
 {% endblock %}
-</body>
-</html>

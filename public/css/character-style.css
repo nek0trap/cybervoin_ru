@@ -59,20 +59,13 @@ div {
     grid-column-end: 4;
 }
 
-.armor-label {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
 
 .armor {
     margin-right: 20px;
 }
 
 .armor-weapons {
-    display: grid;
-    grid-template-columns: 100px 100px;
-    grid-template-rows: 47px repeat(4, 36px);
-    gap: 7px;
+    width: 100px;
 }
 
 .weapons-label {
@@ -99,21 +92,11 @@ div {
 }
 
 .cyberware-gear {
-    display: block;
     width: 230px;
 }
 
 .side-row {
     column-gap: 20px;
-}
-
-.cyberware-gear div:not(:first-child) {
-    height: 58px;
-    margin: 7px 0 7px 0;
-}
-
-.cyberware-gear div:first-child{
-    height: 58px;
 }
 
 .logo-and-userpic {

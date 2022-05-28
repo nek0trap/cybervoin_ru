@@ -100,20 +100,40 @@ class GameMasterController extends AbstractController
                 $tmp = array($gun->getName() => $gun->getDamage());
                 array_push($guns, $tmp);
             }
-
             $tmpChar->setWeapons($guns);
+
             $tmpArmors = $tmpChar->getArmors();
             $armors = array();
             foreach ($tmpArmors as $armor) {
-                $tmp = [
+                $armors[] = [
                     'name' => $armor->getName(),
                     'body' => $armor->getBody(),
                     'head' => $armor->getHead()
-                    ];
-                array_push($armors, $tmp);
+                ];
             }
-
             $tmpChar->setArmor($armors);
+
+            $tmpGears = $tmpChar->getGears();
+            $gears = array();
+            foreach ($tmpGears as $gear) {
+                $gears[] = [
+                    'name' => $gear->getName(),
+                    'description' => $gear->getDescription(),
+                ];
+            }
+            $tmpChar->setGear($gears);
+
+            $tmpCyberwares = $tmpChar->getCyberwares();
+            $cyberwares = array();
+            foreach ($tmpCyberwares as $cyberware) {
+                $cyberwares[] = [
+                    'name' => $cyberware->getName(),
+                    'description' => $cyberware->getDescription(),
+                ];
+            }
+            $tmpChar->setCyberware($cyberwares);
+
+
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
 
