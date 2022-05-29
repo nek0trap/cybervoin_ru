@@ -1,141 +1,36 @@
 body {
-    padding-left: 103px;
-    padding-right: 103px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 div {
-    border: solid 1px black;
-}
-
-.main-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.col-2 {
-    display: flex;
-    flex-direction: column;
-}
-
-.hp-status {
-    display: flex;
-    flex-direction: row;
-    column-gap: 18px;
-    width: 592px;
-}
-
-
-.row {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
-}
-
-.charname-charclass {
-    display: flex;
-    flex-direction: row;
-    column-gap: 20px;
-    margin-right: 20px;
+    padding: 5px;
 }
 
 .char-name {
-    width: 230px;
-    height: 60px;
+    background-color: #198C63;
+    display: flex;
 }
 
 .char-class {
-    width: 146px;
-    height: 60px;
-}
-
-.skills {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-template-rows: 47px repeat(4, 36px);
-}
-
-.skills-label {
-    grid-column-start: 1;
-    grid-column-end: 4;
-}
-
-
-.armor {
-    margin-right: 20px;
-}
-
-.armor-weapons {
-    width: 100px;
-}
-
-.weapons-label {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-.side-row {
+    background-color: #198C63;
     display: flex;
-    flex-direction: row;
 }
 
-.bio {
-    display: grid;
-    grid-template-columns: 230px 230px;
-    grid-auto-rows: 60px;
-    column-gap: 20px;
-    row-gap: 7px;
+.hp-col {
+    width: 16%;
 }
 
-.userpic {
-    width: 146px;
-    height: 314px;
+.cont{
+    height: 95%;
+    width: 95%;
+    margin: auto;
 }
 
-.cyberware-gear {
-    width: 230px;
+.other-label{
+    background-color: gray;
 }
 
-.side-row {
-    column-gap: 20px;
-}
-
-.logo-and-userpic {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-}
-
-.statbox-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 25px;
-}
-
-.status-box {
-    height: 60px;
-}
-
-.skills {
-    gap: 7px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 146px;
-    height: 41px;
-    margin-bottom: 22px;
-}
-
-.hp-status-box {
-    width: 100%;
-}
-
-.stats {
-    column-gap: 20px;
-}
-
-.hp-status-num {
-    height: 38px;
+.other-box{
+    background-color: lightgray;
 }
