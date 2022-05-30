@@ -4,6 +4,7 @@ body {
 }
 
 div {
+    border: solid 1px black;
     padding: 5px;
 }
 
@@ -18,7 +19,7 @@ div {
 }
 
 .hp-col {
-    width: 16%;
+    width: 16.5%;
 }
 
 .cont{
