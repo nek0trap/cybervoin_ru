@@ -1,0 +1,16 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+    member id:
+    {{ member.id }}<br>
+    member name:
+    {{ member.username }}<br>
+    <select name="" id="">
+
+
+    {% for role in member.roles %}
+        <option value="">{{ role }}</option>
+    {% endfor %}
+    </select>
+    <br><br>
+    <a href="/">back to main menu</a>
+{% endblock %}

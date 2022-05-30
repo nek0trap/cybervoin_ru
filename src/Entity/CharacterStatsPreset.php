@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=StatCharRepository::class)
  */
-class StatChar
+class CharacterStatsPreset
 {
     /**
      * @ORM\Id

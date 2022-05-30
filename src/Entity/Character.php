@@ -264,7 +264,7 @@ class Character
         return $this->stats;
     }
 
-    public function setStats(StatChar $st): self
+    public function setStats(CharacterStatsPreset $st): self
     {
         $stats = $st->getStats();
         $this->stats = $stats;
