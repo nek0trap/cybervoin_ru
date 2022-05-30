@@ -3,6 +3,8 @@ const chessDict = {
     bishop: '&#9815;',
     pawn: '&#9817;'
 }
+
+
 //TODO Передавать массив в PHP после moveFigure
 //
 // Я делаю это по средсвтом POST запроса. К примеру у меня есть контролер и в
@@ -72,7 +74,6 @@ function moveFigure(frCoord, toCoord){
     } else {
         showFigureAt(frCoord,figure);
     }
-    console.log(charactersArray.slice(0,50));
 }
 
 function showFigureAt(coord, myFigure) {
@@ -84,12 +85,14 @@ function showFigureAt(coord, myFigure) {
 
 function saveState() {
     $.ajax({
-        url: 'index.php',
         type: 'POST',
         dataType: 'json',
         data: {
-            charArray: charactersArray,
+            'charArray': charactersArray.toString(),
+        },
+        success: function(data) {
+            console.log(data);
         }
     });
-    console.log('post send', charactersArray);
+    //console.log('post send', myUrl);
 }

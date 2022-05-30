@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Armor;
 use App\Entity\Character;
@@ -201,15 +202,15 @@ class GameMasterController extends AbstractController
     /**
      * @Route("/game/board/{id}", name="game_board_byId")
      */
-    public function getGameBoardById($id, Request $request): Response
+    public function getGameBoardById($id, Request $request)
     {
 
         $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
 
-        $charachtersArray = $request->get('');
-
-        var_dump($charachtersArray);
-        var_dump((array)$request);
+        $data = $request->request->get('charArray');
+        if ($data) {
+            return new JsonResponse(explode(',',$data));
+        }
 
         return $this->render('gamemaster/gameboard.html.twig', [
             'gameboard' => $gameboard,
