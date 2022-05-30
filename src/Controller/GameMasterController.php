@@ -23,20 +23,12 @@ use Symfony\Component\Security\Core\Security;
 
 class GameMasterController extends AbstractController
 {
-    protected $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-
-
     /**
      * @Route("/game/character/list", name="gamemaster_character_list")
      */
     public function index(): Response
     {
-        $user = $this->security->getUser();
+        $user = $this->getUser();
 
         $chars = $this->getDoctrine()->getManager()
             ->getRepository(Character::class)
@@ -87,12 +79,13 @@ class GameMasterController extends AbstractController
         $form = $this->createForm(CharacterType::class, $tmpChar);
 
         $form->handleRequest($request);
-        $user = $this->security->getUser();
+        $user = $this->getUser();
 
         if($form->isSubmitted() && $form->isValid())
         {
             $tmpChar->setAuthor($user->getId());
             $tmpChar->setDateCreateChar(time());
+
             $tmpGuns = $tmpChar->getGuns();
             $guns = array();
             foreach ($tmpGuns as $gun)
@@ -156,7 +149,7 @@ class GameMasterController extends AbstractController
         $form = $this->createForm(GameType::class, $game);
 
         $form->handleRequest($request);
-        $user = $this->security->getUser();
+        $user = $this->getUser();
 
         if($form->isSubmitted() && $form->isValid())
         {
@@ -180,7 +173,7 @@ class GameMasterController extends AbstractController
      */
     public function showGames(): Response
     {
-        $user = $this->security->getUser();
+        $user = $this->getUser();
         $games = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['author'=>$user->getId()]);
 
         return $this->render('gamemaster/games_list.html.twig', [
@@ -194,7 +187,7 @@ class GameMasterController extends AbstractController
     public function getGameById($id): Response
     {
         $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->findByOne(['id' => $id]);
-        $user = $this->security->getUser();
+        $user = $this->getUser();
         if($game[0]->getGameadmin() !== $user->getId())
         {
             return $this->redirectToRoute("gamemaster_list_game");
