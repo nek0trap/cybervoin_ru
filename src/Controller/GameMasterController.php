@@ -57,14 +57,8 @@ class GameMasterController extends AbstractController
             $tmpChar->setAuthor($user->getId());
             $tmpChar->setDateCreateChar(time());
 
-            $tmpGuns = $tmpChar->getGuns();
-            $guns = array();
-            foreach ($tmpGuns as $gun)
-            {
-                $tmp = array($gun->getName() => $gun->getDamage());
-                array_push($guns, $tmp);
-            }
-            $tmpChar->setWeapons($guns);
+
+
             $tmpArmors = $tmpChar->getArmors();
             $armors = array();
             foreach ($tmpArmors as $armor) {
@@ -76,26 +70,9 @@ class GameMasterController extends AbstractController
             }
             $tmpChar->setArmor($armors);
 
-            $tmpGears = $tmpChar->getGears();
-            dump($tmpGears);
-            $gears = array();
-            foreach ($tmpGears as $gear) {
-                $gears[] = [
-                    'name' => $gear->getName(),
-                    'description' => $gear->getDescription(),
-                ];
-            }
-            $tmpChar->setGear($gears);
-
-            $tmpCyberwares = $tmpChar->getCyberwares();
-            $cyberwares = array();
-            foreach ($tmpCyberwares as $cyberware) {
-                $cyberwares[] = [
-                    'name' => $cyberware->getName(),
-                    'description' => $cyberware->getDescription(),
-                ];
-            }
-            $tmpChar->setCyberware($cyberwares);
+            $tmpChar->setWeaponsArrayCollection();
+            $tmpChar->setGearsArrayCollection();
+            $tmpChar->setCyberwaresArrayCollection();
 
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();

@@ -339,4 +339,46 @@ class Character
         return $this->urlAvatar;
     }
     //endregion
+
+    public function setWeaponsArrayCollection(): self
+    {
+        $ac = $this->getGuns();
+        $guns = array();
+        foreach ($ac as $key => $value)
+        {
+            $guns[] = [$value->getName() => $value->getDamage()];
+        }
+        $this->setWeapons($guns);
+        return $this;
+    }
+
+    public function setGearsArrayCollection(): self
+    {
+        $ac = $this->getGears();
+        $gears = array();
+        foreach ($ac as $key => $value)
+        {
+            $gears[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setGear($gears);
+        return $this;
+    }
+
+    public function setCyberwaresArrayCollection(): self
+    {
+        $ac = $this->getCyberwares();
+        $cyberwares = array();
+        foreach ($ac as $value)
+        {
+            $cyberwares[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setCyberware($cyberwares);
+        return $this;
+    }
 }
