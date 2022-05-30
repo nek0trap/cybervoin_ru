@@ -83,8 +83,6 @@ function showFigureAt(coord, myFigure) {
 }
 
 function saveState() {
-    // $.post('http://localhost:8000/game/board/1', charactersArray);
-
     $.ajax({
         url: 'index.php',
         type: 'POST',
@@ -92,6 +90,6 @@ function saveState() {
         data: {
             charArray: charactersArray,
         }
-    }, {})
+    });
     console.log('post send', charactersArray);
 }

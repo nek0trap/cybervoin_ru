@@ -213,12 +213,18 @@ class GameMasterController extends AbstractController
 
         $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
 
-        $charachtersArray = (array)$request;
+        $charachtersArray = $request->get('');
 
         var_dump($charachtersArray);
+        var_dump((array)$request);
 
         return $this->render('gamemaster/gameboard.html.twig', [
             'gameboard' => $gameboard,
         ]);
+    }
+
+
+    public function saveGameBoard(Request $request)
+    {
     }
 }
