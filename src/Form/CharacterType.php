@@ -4,7 +4,7 @@ namespace App\Form;
 
 
 use App\Entity\Armor;
-use App\Entity\StatChar;
+use App\Entity\CharacterStatsPreset;
 use App\Entity\Weapon;
 use App\Repository\WeaponRepository;
 use Doctrine\ORM\EntityRepository;
@@ -53,7 +53,7 @@ class CharacterType extends AbstractType
                 'prototype' => true,
             ])
             ->add('stats', EntityType::class, [
-                'class' => StatChar::class,
+                'class' => CharacterStatsPreset::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->orderBy('p.id', 'ASC');

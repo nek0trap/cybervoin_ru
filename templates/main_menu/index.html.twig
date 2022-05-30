@@ -7,6 +7,10 @@
         {% for role in app.user.roles %}
             <br>
             <span class="badge badge-success">Success</span> {{ role }} <br>
+            {% if role == 'ROLE_USER' %}
+                <a href="{{ path("member_profile", {"id": app.user.id}) }}">Admin Panel</a> <br>
+            {%endif %}
+
             {% if role == 'ROLE_ADMIN' %}
                 <a href="/admin">Admin Panel</a> <br>
                 <a href="/admin/help/createUser">Create User</a><br>

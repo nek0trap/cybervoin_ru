@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Character;
-use App\Entity\StatChar;
+use App\Entity\CharacterStatsPreset;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +23,7 @@ class testController extends AbstractController
     public function number(Request $request): Response
     {
         $id = 1;
-        $stats = $this->getDoctrine()->getManager()->find(StatChar::class, $id);
+        $stats = $this->getDoctrine()->getManager()->find(CharacterStatsPreset::class, $id);
         dd($stats);
     }
 
