@@ -47,35 +47,6 @@ class GameMasterController extends AbstractController
     {
         $tmpChar = new Character();
 
-        $weapons = $this->getDoctrine()->getManager()
-            ->getRepository(Weapon::class)
-            ->findBy([]);
-        foreach ($weapons as $weapon)
-        {
-            $tmpChar->getGuns()->add($weapon);
-        }
-        $armor = $this->getDoctrine()->getManager()
-            ->getRepository(Armor::class)
-            ->findBy([]);
-        foreach ($armor as $armorSet)
-        {
-            $tmpChar->getArmors()->add(($armorSet));
-        }
-        $gears = $this->getDoctrine()->getManager()
-            ->getRepository(Gear::class)
-            ->findBy([]);
-        foreach ($gears as $gear)
-        {
-            $tmpChar->getGears()->add($gear);
-        }
-        $cyberwares = $this->getDoctrine()->getManager()
-            ->getRepository(Cyberware::class)
-            ->findBy([]);
-        foreach ($cyberwares as $cyberware)
-        {
-            $tmpChar->getCyberwares()->add($cyberware);
-        }
-
         $form = $this->createForm(CharacterType::class, $tmpChar);
 
         $form->handleRequest($request);
@@ -94,7 +65,6 @@ class GameMasterController extends AbstractController
                 array_push($guns, $tmp);
             }
             $tmpChar->setWeapons($guns);
-
             $tmpArmors = $tmpChar->getArmors();
             $armors = array();
             foreach ($tmpArmors as $armor) {
@@ -107,6 +77,7 @@ class GameMasterController extends AbstractController
             $tmpChar->setArmor($armors);
 
             $tmpGears = $tmpChar->getGears();
+            dump($tmpGears);
             $gears = array();
             foreach ($tmpGears as $gear) {
                 $gears[] = [
@@ -125,7 +96,6 @@ class GameMasterController extends AbstractController
                 ];
             }
             $tmpChar->setCyberware($cyberwares);
-
 
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();

@@ -27,7 +27,7 @@
                     </td>
                     <td>{{ char.Name }}</td>
                     <td>{{ char.Author }}</td>
-                    <td>{{ char.DateCreateChar }}</td>
+                    <td>{{ char.DateCreateChar | date('H:m Y-m-d')  }}</td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -42,4 +42,16 @@ class MainController extends AbstractController
             'member' => $member,
         ]);
     }
+
+
+    /**
+     * @Route("/members", name="members_list")
+     */
+    public function userList(): Response
+    {
+        $members = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
+        return $this->render('main_menu/user_list.html.twig', [
+            'members' => $members,
+        ]);
+    }
 }
