@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CharType extends AbstractType
+class CharacterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -38,7 +38,19 @@ class CharType extends AbstractType
                 'entry_type' => ArmorType::class,
                 'label' => 'Armor:',
                 'allow_add' => true,
-                'prototype' => false,
+                'prototype' => true,
+            ])
+            ->add('cyberwares', CollectionType::class, [
+                'entry_type' => CyberwareType::class,
+                'label' => 'Cyberware:',
+                'allow_add' => true,
+                'prototype' => true,
+            ])
+            ->add('gears', CollectionType::class, [
+                'entry_type' => GearType::class,
+                'label' => 'Gear:',
+                'allow_add' => true,
+                'prototype' => true,
             ])
             ->add('stats', EntityType::class, [
                 'class' => StatChar::class,

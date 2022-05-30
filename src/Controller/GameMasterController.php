@@ -2,20 +2,22 @@
 
 namespace App\Controller;
 
-
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Armor;
 use App\Entity\Character;
+use App\Entity\Cyberware;
+use App\Form\CyberwareType;
+use App\Form\GearType;
 use App\Entity\Game;
 use App\Entity\GameBoard;
+use App\Entity\Gear;
 use App\Entity\Weapon;
-use App\Form\CharType;
-use App\Form\GameBoardType;
+use App\Form\CharacterType;
 use App\Form\GameType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 
@@ -40,7 +42,6 @@ class GameMasterController extends AbstractController
             ->getRepository(Character::class)
             ->findBy(['author' => $user->getId()],[]);
 
-
         return $this->render('admin/characters/list.html.twig', [
             'characters' => $chars,
         ]);
@@ -53,8 +54,6 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
-
-
 
         $weapons = $this->getDoctrine()->getManager()
             ->getRepository(Weapon::class)
@@ -70,7 +69,22 @@ class GameMasterController extends AbstractController
         {
             $tmpChar->getArmors()->add(($armorSet));
         }
-        $form = $this->createForm(CharType::class, $tmpChar);
+        $gears = $this->getDoctrine()->getManager()
+            ->getRepository(Gear::class)
+            ->findBy([]);
+        foreach ($gears as $gear)
+        {
+            $tmpChar->getGears()->add($gear);
+        }
+        $cyberwares = $this->getDoctrine()->getManager()
+            ->getRepository(Cyberware::class)
+            ->findBy([]);
+        foreach ($cyberwares as $cyberware)
+        {
+            $tmpChar->getCyberwares()->add($cyberware);
+        }
+
+        $form = $this->createForm(CharacterType::class, $tmpChar);
 
         $form->handleRequest($request);
         $user = $this->security->getUser();
@@ -86,8 +100,40 @@ class GameMasterController extends AbstractController
                 $tmp = array($gun->getName() => $gun->getDamage());
                 array_push($guns, $tmp);
             }
-
             $tmpChar->setWeapons($guns);
+
+            $tmpArmors = $tmpChar->getArmors();
+            $armors = array();
+            foreach ($tmpArmors as $armor) {
+                $armors[] = [
+                    'name' => $armor->getName(),
+                    'body' => $armor->getBody(),
+                    'head' => $armor->getHead()
+                ];
+            }
+            $tmpChar->setArmor($armors);
+
+            $tmpGears = $tmpChar->getGears();
+            $gears = array();
+            foreach ($tmpGears as $gear) {
+                $gears[] = [
+                    'name' => $gear->getName(),
+                    'description' => $gear->getDescription(),
+                ];
+            }
+            $tmpChar->setGear($gears);
+
+            $tmpCyberwares = $tmpChar->getCyberwares();
+            $cyberwares = array();
+            foreach ($tmpCyberwares as $cyberware) {
+                $cyberwares[] = [
+                    'name' => $cyberware->getName(),
+                    'description' => $cyberware->getDescription(),
+                ];
+            }
+            $tmpChar->setCyberware($cyberwares);
+
+
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
 

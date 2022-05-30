@@ -1,102 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CyberPlatform</title>
+{% extends 'base.html.twig' %}
+
     {% block stylesheets %}
         <link href="{{ asset('/css/character-style.css') }}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     {% endblock %}
-</head>
-<body>
 {% block body %}
     <a href="{{ path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
     <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
-    <section class="main-row">
-        <section class="logo-and-userpic col-1">
+
+
+
+
+    <div class="row">
+        <div class="logo-and-userpic col-2">
             <div class="logo">Logotipchik</div>
             <div class="userpic">User avatar</div>
-        </section>
-        <section class="col-2">
-            <section class="1st-row row">
-                <section class="charname-charclass">
-                    <div class="char-name">{{ charcter.name }}</div>
-                    <div class="char-class">{{ charcter.id }}</div>
-                </section>
-                <section class="hp-status">
-                    <section class="starting-hits hp-status-box">
-                        <div class="starting-hits-label hp-status-box-label">starting hits</div>
-                        <div class="hp-status-num">{{ charcter.health }}</div>
-                    </section>
-                    <section class="seriously-wounded hp-status-box">
-                        <div class="starting-hits-label hp-status-box-label">seriously wounded</div>
-                        <div class="hp-status-num">{{ charcter.wounded }}</div>
-                    </section>
-                    <section class="death-save hp-status-box">
-                        <div class="starting-hits-label hp-status-box-label">death save</div>
-                        <div class="hp-status-num">{{ charcter.deathsave }}</div>
-                    </section>
-                </section>
-            </section>
-            <section class="stats nd2-row row">
+        </div>
+        <div class="col">
+            <div class="row">
+                <div style="width: 30%;">
+                    <div class="cont other-label">{{ charcter.name }}</div>
+                </div>
+                <div style="width: 20%;">
+                    <div class="cont other-label">{{ charcter.id }}</div>
+                </div>
+                <div class="hp-col">
+                    <div class="other-label">starting hits</div>
+                    <div class="other-box">{{ charcter.health }}</div>
+                </div>
+                <div class="hp-col">
+                    <div class="other-label">wounded</div>
+                    <div class="other-box">{{ charcter.wounded }}</div>
+                </div>
+                <div class="hp-col">
+                    <div class="other-label">death save</div>
+                    <div class="other-box">{{ charcter.deathsave }}</div>
+                </div>
+            </div>
+            <div class="stats nd2-row row">
                 {% for key, value in charcter.stats %}
-                    <div class="{{ key }}-statbox statbox">
-                        <div class="{{ key }}-statbox-label statbox-label">{{ key }}</div>
-                        <div class="{{ key }}-status status-box">{{ value }}</div>
+                    <div class="col">
+                        <div class="other-label">{{ key }}</div>
+                        <div class="other-box">{{ value }}</div>
                     </div>
                 {% endfor %}
-            </section>
-            <section class="3rd-row row">
-                <section class="skills">
-                    <div class="skills-label">Skills</div>
-{#                    {% for skill in charcter.skills %}#}
-                        <div>
-{#                            {{ skill }}#}
-                        </div>
-{#                    {% endfor %}#}
-                </section>
-                <section class="armor armor-weapons">
-                    <div class="armor-label">armor</div>
-{#                    {% for item in charcter.armor %}#}
-                        <div>
-{#                            {{ item }}#}
-                        </div>
-{#                    {% endfor %}#}
-                </section>
-                <section class="weapons armor-weapons">
-                    <div class="weapons-label">weapons</div>
-                    {% for key, gun in charcter.weapons %}
-                        <div>
-                            {% for name, damage in gun %}
-                                {{ name }}
-                            {% endfor %}
-                        </div>
-                        <div>
-                            {% for name, damage in gun %}
-                                {{ damage }}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </section>
-            </section>
-        </section>
-    </section>
-    <section class="side-row">
-        <section class="bio">
-            <div class="bio-label">{{ charcter.bio }}</div>
-        </section>
-        <section class="cyberware cyberware-gear">
-            <div class="cyberware-label">cyberware</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-        </section>
-        <section class="gear cyberware-gear">
-            <div class="gear-label">gear</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-        </section>
-    </section>
+            </div>
+            <div class="3rd-row row">
+                <div class="col">
+                    <div class="other-label">Skills</div>
+                    {#                    {% for skill in charcter.skills %}#}
+                    <div class="other-box">
+                        {#                            {{ skill }}#}
+                    </div>
+                    {#                    {% endfor %}#}
+                </div>
+                <div class="col">
+                    <div class="other-label">armor</div>
+                    <div class="cont">
+                        {% for armor in charcter.armor %}
+                            <div class="other-box row">
+                                {{ armor.name }}
+                            </div>
+                            <div class="row">
+                                <div class="other-box col">
+                                    <div> Head </div>
+                                    <div> Body </div>
+                                </div>
+                                <div class="other-box col">
+                                    <div> {{ armor.head }} </div>
+                                    <div> {{ armor.body }} </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="other-label">weapons</div>
+                    <div class="cont">
+                        {% for key, gun in charcter.weapons %}
+                            <div class="other-box row">
+                                <div class="col">
+                                    {% for name, damage in gun %}
+                                        {{ name }}
+                                    {% endfor %}
+                                </div>
+                                <div class="col">
+                                    {% for name, damage in gun %}
+                                        {{ damage }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="side-row row">
+        <div class="col">
+            <div class="other-label">Bio</div>
+            <div class="biography other-box">{{ charcter.bio }}</div>
+        </div>
+        <div class="col">
+            <div class="other-label ">cyberware</div>
+            {% for cyberware in charcter.cyberware %}
+                <div>
+                    <div class="other-label">{{ cyberware.name }}</div>
+                    <div class="other-box">{{ cyberware.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <div class="other-label ">gear</div>
+            {% for gear in charcter.gear %}
+                <div>
+                    <div class="other-label">{{ gear.name }}</div>
+                    <div class="other-box">{{ gear.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
 {% endblock %}
-</body>
-</html>

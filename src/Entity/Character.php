@@ -51,7 +51,12 @@ class Character
     /**
      * @ORM\Column(type="json")
      */
-    private $inventory = [];
+    private $cyberware = [];
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $gear = [];
 
     /**
      * @ORM\Column(type="json")
@@ -85,11 +90,34 @@ class Character
 
     protected $weaponsArray;
     protected $armorArray;
+    protected $cyberwareArray;
+    protected $gearArray;
+
 
     public function __construct()
     {
-        $this->weaponsArray= new ArrayCollection();
-        $this->armorArray= new ArrayCollection();
+        $this->cyberwareArray = new ArrayCollection();
+        $this->gearArray = new ArrayCollection();
+        $this->weaponsArray = new ArrayCollection();
+        $this->armorArray = new ArrayCollection();
+    }
+
+    public function getGears(): ArrayCollection
+    {
+        if (isset($this->gearArray))
+        {
+            $this->setGear((array)$this->gearArray);
+        }
+        return $this->gearArray;
+    }
+
+    public function getCyberwares(): ArrayCollection
+    {
+        if (isset($this->cyberwareArray))
+        {
+            $this->setCyberware((array)$this->cyberwareArray);
+        }
+        return $this->cyberwareArray;
     }
 
     public function getArmors(): ArrayCollection
@@ -125,6 +153,38 @@ class Character
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCyberware(): array
+    {
+        return $this->cyberware;
+    }
+
+    /**
+     * @param array $cyberware
+     */
+    public function setCyberware(array $cyberware): void
+    {
+        $this->cyberware = $cyberware;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGear(): array
+    {
+        return $this->gear;
+    }
+
+    /**
+     * @param array $gear
+     */
+    public function setGear(array $gear): void
+    {
+        $this->gear = $gear;
     }
 
     public function getHealth(): ?int
@@ -269,7 +329,6 @@ class Character
         $this->setWeapons($tmpArr);
 
     }
-
 
     public function setURLAvatar(string $url): self
     {
