@@ -7,14 +7,8 @@ div {
     padding: 5px;
 }
 
-.char-name {
-    background-color: #198C63;
-    display: flex;
-}
-
 .char-class {
-    background-color: #198C63;
-    display: flex;
+    background-color: gray;
 }
 
 .hp-col {
@@ -29,8 +23,22 @@ div {
 
 .other-label{
     background-color: gray;
+    text-align: center;
+    font-weight: bold;
 }
 
 .other-box{
     background-color: lightgray;
+}
+
+.stats {
+    text-align: center;
+}
+
+.name-class {
+    text-align: left;
+}
+
+.cols {
+    margin-bottom: 2px;
 }

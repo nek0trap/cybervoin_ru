@@ -208,9 +208,14 @@ class GameMasterController extends AbstractController
     /**
      * @Route("/game/board/{id}", name="game_board_byId")
      */
-    public function getGameBoardById($id): Response
+    public function getGameBoardById($id, Request $request): Response
     {
+
         $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
+
+        $charachtersArray = $request->get('charactersArray');
+
+        var_dump($charachtersArray);
 
         return $this->render('gamemaster/gameboard.html.twig', [
             'gameboard' => $gameboard,
