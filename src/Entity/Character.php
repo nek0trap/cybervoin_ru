@@ -177,6 +177,70 @@ class Character
     }
     //endregion
 
+    //region ArrayCollection setters for base setters!
+    /*
+    Методы вызывать можно и нужно только в тех местах, где гарантировано есть
+    Значение в коллекциях, инчае краш.
+    */
+    public function setWeaponsArrayCollection(): self
+    {
+        $ac = $this->getGuns();
+        $guns = array();
+        foreach ($ac as $key => $value)
+        {
+            $guns[] = [$value->getName() => $value->getDamage()];
+        }
+        $this->setWeapons($guns);
+        return $this;
+    }
+
+    public function setGearsArrayCollection(): self
+    {
+        $ac = $this->getGears();
+        $gears = array();
+        foreach ($ac as $key => $value)
+        {
+            $gears[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setGear($gears);
+        return $this;
+    }
+
+    public function setCyberwaresArrayCollection(): self
+    {
+        $ac = $this->getCyberwares();
+        $cyberwares = array();
+        foreach ($ac as $value)
+        {
+            $cyberwares[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setCyberware($cyberwares);
+        return $this;
+    }
+
+    public function setArmorsArrayCollection(): self
+    {
+        $ac = $this->getArmors();
+        $armors = array();
+        foreach ($ac as $value) {
+            $armors[] = [
+                'name' => $value->getName(),
+                'body' => $value->getBody(),
+                'head' => $value->getHead()
+            ];
+        }
+        $this->setArmor($armors);
+        return $this;
+    }
+
+    //endregion
+
     //region base getters and setters
     public function getId(): ?int
     {
@@ -340,45 +404,4 @@ class Character
     }
     //endregion
 
-    public function setWeaponsArrayCollection(): self
-    {
-        $ac = $this->getGuns();
-        $guns = array();
-        foreach ($ac as $key => $value)
-        {
-            $guns[] = [$value->getName() => $value->getDamage()];
-        }
-        $this->setWeapons($guns);
-        return $this;
-    }
-
-    public function setGearsArrayCollection(): self
-    {
-        $ac = $this->getGears();
-        $gears = array();
-        foreach ($ac as $key => $value)
-        {
-            $gears[] = [
-                'name' => $value->getName(),
-                'description' => $value->getDescription(),
-            ];
-        }
-        $this->setGear($gears);
-        return $this;
-    }
-
-    public function setCyberwaresArrayCollection(): self
-    {
-        $ac = $this->getCyberwares();
-        $cyberwares = array();
-        foreach ($ac as $value)
-        {
-            $cyberwares[] = [
-                'name' => $value->getName(),
-                'description' => $value->getDescription(),
-            ];
-        }
-        $this->setCyberware($cyberwares);
-        return $this;
-    }
 }
