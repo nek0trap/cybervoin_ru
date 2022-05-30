@@ -193,7 +193,7 @@ class GameMasterController extends AbstractController
      */
     public function getGameById($id): Response
     {
-        $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['id' => $id], []);
+        $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->findByOne(['id' => $id]);
         $user = $this->security->getUser();
         if($game[0]->getGameadmin() !== $user->getId())
         {
