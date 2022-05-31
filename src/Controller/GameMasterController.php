@@ -205,7 +205,7 @@ class GameMasterController extends AbstractController
     public function getGameBoardById($id, Request $request)
     {
 
-        $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
+        $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => $id]);
 
 
 
