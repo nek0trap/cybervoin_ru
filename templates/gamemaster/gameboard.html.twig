@@ -4,6 +4,5 @@
 {% endblock %}
 {% block body %}
     <div id="chessBoard" data-field="{{ gameboard.board }}" data-line="{{ gameboard.linelenght }}"></div>
-    <div> {{ path('game_board_byId', {id: 1}) }}</div>
     <script src="{{ asset("js/draw-board.js") }}"></script>
 {% endblock %}

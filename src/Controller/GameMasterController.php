@@ -207,8 +207,13 @@ class GameMasterController extends AbstractController
 
         $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
 
+
+
         $data = $request->request->get('charArray');
         if ($data) {
+            $gameboard->setCharactersArray(explode(',',$data));
+            $this->getDoctrine()->getManager()->persist($gameboard);
+            $this->getDoctrine()->getManager()->flush();
             return new JsonResponse(explode(',',$data));
         }
 

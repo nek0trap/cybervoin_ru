@@ -24,6 +24,11 @@ class GameBoard
     protected $name;
 
     /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $charactersArray = [];
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $linelenght;
@@ -85,6 +90,22 @@ class GameBoard
         $this->board = $board;
     }
 
+    /**
+     * @return array
+     */
+    public function getCharactersArray(): array
+    {
+        return $this->charactersArray;
+    }
+
+    /**
+     * @param array $charactersArray
+     */
+    public function setCharactersArray(array $charactersArray): void
+    {
+        $this->charactersArray = $charactersArray;
+    }
+
 
 
     public function isAvailable(): Boolean
@@ -99,8 +120,6 @@ class GameBoard
     {
         $this->isAvailable = $isAvailable;
     }
-
-
 
 
     public function getName(): ?string

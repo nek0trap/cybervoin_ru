@@ -6,27 +6,21 @@ const chessDict = {
 
 
 //TODO Передавать массив в PHP после moveFigure
-//
-// Я делаю это по средсвтом POST запроса. К примеру у меня есть контролер и в
-// котором описано общая логика и формирования предстовление. На стороне представления
-// есть некий код JS который по итогу должен передать мне данные для записи их в БД.
-// Когда JS готов передать данные он отправляет их формате JSON через POST запрос на обрабочик (выделенный метод в классе.)
-//
-// Ну а дальше все как обычно анализируем $request и записываем данные в БД.
 
+const values = "111111033110331100311223112231112311123111111";
+const lineLength = 5;
+const charactersArray = new Array((values.length / lineLength) * 10 + lineLength).fill(0);
 const characters = [['22', chessDict['pawn']], ['33', chessDict['rook']]];
-var charactersArray = new Array(10000).fill(0);
 
 $(document).ready(function () {
     var divSquare = '<div id = "c$coord" class = "cell cell-$color"></div>';
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
-    let chessBoard = $("#chessBoard");
-    let values = "111111033110331100311223112231112311123111111";
-    let lineLength = 5;
+    const chessBoard = $("#chessBoard");
     for (let i = 0; i < characters.length; i++) {
         charactersArray[characters[i][0]] = characters[i][1];
     }
+    console.log()
     let lineWidth = values.length / lineLength;
     const ground = ["dirt", "wall", "swamp","water"];
     for (let i = 1; i < lineWidth + 1; i++) {
