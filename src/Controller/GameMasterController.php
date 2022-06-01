@@ -46,6 +46,10 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
+        $tmpChar->getGuns()->add(new Weapon("1d4", "Salovik"));
+        $tmpChar->getGears()->add(new Gear('Guitar', 'Thing that gives music to people'));
+        $tmpChar->getCyberwares()->add(new Cyberware('CyberGuitar', 'Thing that gives CYBERmusic to people'));
+        $tmpChar->getArmors()->add(new Armor('Kevlar', 7,7));
         $form = $this->createForm(CharacterType::class, $tmpChar);
         $form->handleRequest($request);
         $user = $this->getUser();

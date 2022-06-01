@@ -7,9 +7,9 @@
                 {{ form_start(char_create_form) }}
                 <div class="fs-2 m-3">{{ form_row(char_create_form.name) }}</div>
                 <div class="row m-3">
-                    <div class="col">{{ form_row(char_create_form.health, {'label': 'Starting hits'}) }}</div>
-                    <div class="col">{{ form_row(char_create_form.wounded, {'label': 'Seriosly wounded'}) }}</div>
-                    <div class="col">{{ form_row(char_create_form.deathsave, {'label': 'Death save'}) }}</div>
+                    <div class="col">{{ form_label(char_create_form.health) }} {{ form_widget(char_create_form.health) }}</div>
+                    <div class="col">{{ form_label(char_create_form.wounded) }} {{ form_widget(char_create_form.wounded) }}</div>
+                    <div class="col">{{ form_label(char_create_form.deathsave) }} {{ form_widget(char_create_form.deathsave) }}</div>
                 </div>
                 <div class="row m-3">
                     {{ form_row(char_create_form.stats) }}

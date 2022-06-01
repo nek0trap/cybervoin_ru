@@ -49,32 +49,33 @@
                 <div class="col">
                     <div class="other-label">Armor</div>
                         {% for armor in charcter.armor %}
-                            <div class="name-class other-box">
-                                {{ armor.name }}
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div  class="other-box">Head</div>
-                                    <div  class="other-box">Body</div>
-                                </div>
-                                <div class="col">
-                                    <div class="other-box"> {{ armor.head }} </div>
-                                    <div class="other-box"> {{ armor.body }} </div>
-                                </div>
-                            </div>
+                    <div class="row" style="padding: 0 10px 0 10px; margin-top: 10px">
+                        <div class="col" style="padding-left: 0">
+                            <div class="other-box armor-field">Name</div>
+                            <div class="other-box armor-field">Head</div>
+                            <div class="other-box armor-field">Body</div>
+                        </div>
+                        <div class="col px-0">
+                            <div class="other-box armor-field"> {{ armor.name }} </div>
+                            <div class="other-box armor-field"> {{ armor.head }} </div>
+                            <div class="other-box armor-field"> {{ armor.body }} </div>
+                        </div>
                         {% endfor %}
+                    </div>
                 </div>
                 <div class="col">
                     <div class="other-label">Weapons</div>
-                        {% for gun in charcter.weapons %}
-                        <div class="row">
-                                <div class="col other-box">
-                                    {% for item in gun %}
-                                    {{ item }}
+                        {% for key, gun in charcter.weapons %}
+                        <div class="row" style="padding: 0 10px 0 10px; margin-top: 10px">
+                                <div class="col other-box" style="margin-right: 10px">
+                                    {% for name, damage in gun %}
+                                        {{ name }}
                                     {% endfor %}
                                 </div>
                                 <div class="col other-box">
-
+                                    {% for name, damage in gun %}
+                                        {{ damage }}
+                                    {% endfor %}
                                 </div>
                         </div>
                         {% endfor %}
@@ -85,19 +86,19 @@
     <div class="side-row row">
         <div class="col bio-box">
             <div class="other-label">Bio</div>
-            <div class="other-box">{{ charcter.bio }}</div>
+            <div class="other-box" style="margin-top: 10px">{{ charcter.bio }}</div>
         </div>
-        <div class="col">
+        <div class="col-3">
             <div class="other-label">Cyberware</div>
             {% for cyberware in charcter.cyberware %}
-                <div class="name-class other-label">{{ cyberware.name }}</div>
+                <div class="name-class other-label" style="margin-top: 10px">{{ cyberware.name }}</div>
                 <div class="other-box">{{ cyberware.description }}</div>
             {% endfor %}
         </div>
-        <div class="col">
+        <div class="col-3">
             <div class="other-label ">Gear</div>
             {% for gear in charcter.gear %}
-                <div class="name-class other-label">{{ gear.name }}</div>
+                <div class="name-class other-label" style="margin-top: 10px">{{ gear.name }}</div>
                 <div class="other-box">{{ gear.description }}</div>
             {% endfor %}
         </div>

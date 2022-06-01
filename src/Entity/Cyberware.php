@@ -27,6 +27,17 @@ class Cyberware
      */
     private $description;
 
+    /**
+     * @param $name
+     * @param $description
+     */
+    public function __construct($name, $description)
+    {
+        $this->name = $name;
+        $this->description = $description;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

@@ -27,6 +27,16 @@ class Weapon
      */
     private $name;
 
+    /**
+     * @param $damage
+     * @param $name
+     */
+    public function __construct($damage, $name)
+    {
+        $this->damage = $damage;
+        $this->name = $name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,4 +65,6 @@ class Weapon
 
         return $this;
     }
+
+
 }

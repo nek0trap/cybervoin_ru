@@ -5,8 +5,6 @@ const chessDict = {
 }
 
 
-//TODO Передавать массив в PHP после moveFigure
-
 const values = "111111033110331100311223112231112311123111111";
 const lineLength = 5;
 const charactersArray = new Array((values.length / lineLength) * 10 + lineLength).fill(0);

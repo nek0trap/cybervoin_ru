@@ -1,5 +1,6 @@
 body {
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .row {
@@ -32,6 +33,10 @@ body {
     padding: 10px;
 }
 
+.armor-field{
+    margin-bottom: 10px;
+}
+
 .stats-label {
     font-size: 20px;
 }
@@ -45,6 +50,8 @@ body {
 
 .name-class {
     text-align: left;
+    padding-left: 10px;
+
 }
 
 
@@ -53,9 +60,6 @@ body {
     background-color: gray;
 }
 
-div {
-    border: 1px solid black;
-}
 
 .label-box {
     padding: 10px;
