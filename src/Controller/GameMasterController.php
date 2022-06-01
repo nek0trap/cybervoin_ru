@@ -71,8 +71,7 @@ class GameMasterController extends AbstractController
         }
 
         return $this->render('gamemaster/createForm.html.twig', [
-            'char_create_form' => $form->createView(),
-            'back_path' => 'gamemaster_create_char'
+            'char_create_form' => $form->createView()
         ]);
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StatCharRepository;
+use App\Repository\CharacterStatsPresetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=StatCharRepository::class)
+ * @ORM\Entity(repositoryClass=CharacterStatsPresetRepository::class)
  */
 class CharacterStatsPreset
 {

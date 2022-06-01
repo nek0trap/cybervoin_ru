@@ -4,6 +4,7 @@ namespace App\Form;
 
 
 use App\Entity\Armor;
+use App\Entity\CharacterSkillPreset;
 use App\Entity\CharacterStatsPreset;
 use App\Entity\Weapon;
 use App\Repository\WeaponRepository;
@@ -55,11 +56,20 @@ class CharacterType extends AbstractType
             ->add('stats', EntityType::class, [
                 'class' => CharacterStatsPreset::class,
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                        ->orderBy('p.id', 'ASC');
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.id', 'ASC');
                 },
                 'choice_label' => 'name',
-                'label' => 'Preset',
+                'label' => 'Preset stats',
+            ])
+            ->add('skills', EntityType::class, [
+                'class' => CharacterSkillPreset::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.id', 'ASC');
+                },
+                'choice_label' => 'name',
+                'label' => 'Preset Skills'
             ])
             ->add('bio', TextareaType::class)
             ->add('SAVE', SubmitType::class);
