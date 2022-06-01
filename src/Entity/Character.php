@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Character
 {
+    //region base field entity
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -87,6 +88,7 @@ class Character
      * @ORM\Column(type="text", nullable=true))
      */
     private $urlAvatar;
+    //endregion
 
     protected $weaponsArray;
     protected $armorArray;
@@ -102,6 +104,7 @@ class Character
         $this->armorArray = new ArrayCollection();
     }
 
+    //region ArrayCollection method
     public function getGears(): ArrayCollection
     {
         if (isset($this->gearArray))
@@ -129,7 +132,7 @@ class Character
         return $this->armorArray;
     }
 
-    public function getGuns()
+    public function getGuns(): ArrayCollection
     {
         if (isset($this->weaponsArray))
         {
@@ -138,23 +141,9 @@ class Character
         return $this->weaponsArray;
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    //endregion
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
+    //region getter and setter ArrayCollection
     /**
      * @return array
      */
@@ -185,6 +174,89 @@ class Character
     public function setGear(array $gear): void
     {
         $this->gear = $gear;
+    }
+    //endregion
+
+    //region ArrayCollection setters for base setters!
+    /*
+    Методы вызывать можно и нужно только в тех местах, где гарантировано есть
+    Значение в коллекциях, инчае краш.
+    */
+    public function setWeaponsArrayCollection(): self
+    {
+        $ac = $this->getGuns();
+        $guns = array();
+        foreach ($ac as $key => $value)
+        {
+            $guns[] = [$value->getName() => $value->getDamage()];
+        }
+        $this->setWeapons($guns);
+        return $this;
+    }
+
+    public function setGearsArrayCollection(): self
+    {
+        $ac = $this->getGears();
+        $gears = array();
+        foreach ($ac as $key => $value)
+        {
+            $gears[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setGear($gears);
+        return $this;
+    }
+
+    public function setCyberwaresArrayCollection(): self
+    {
+        $ac = $this->getCyberwares();
+        $cyberwares = array();
+        foreach ($ac as $value)
+        {
+            $cyberwares[] = [
+                'name' => $value->getName(),
+                'description' => $value->getDescription(),
+            ];
+        }
+        $this->setCyberware($cyberwares);
+        return $this;
+    }
+
+    public function setArmorsArrayCollection(): self
+    {
+        $ac = $this->getArmors();
+        $armors = array();
+        foreach ($ac as $value) {
+            $armors[] = [
+                'name' => $value->getName(),
+                'body' => $value->getBody(),
+                'head' => $value->getHead()
+            ];
+        }
+        $this->setArmor($armors);
+        return $this;
+    }
+
+    //endregion
+
+    //region base getters and setters
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getHealth(): ?int
@@ -320,16 +392,6 @@ class Character
         return $this;
     }
 
-    public function setWeapon(Weapon $weapon = null)
-    {
-        $dmg = $weapon->getDamage();
-        $name = $weapon->getName();
-        $tmpArr = $this->getWeapons();
-        $tmpArr[] = [$name => $dmg];
-        $this->setWeapons($tmpArr);
-
-    }
-
     public function setURLAvatar(string $url): self
     {
         $this->urlAvatar = $url;
@@ -340,4 +402,6 @@ class Character
     {
         return $this->urlAvatar;
     }
+    //endregion
+
 }

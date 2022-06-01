@@ -8,7 +8,8 @@
             <br>
             <span class="badge badge-success">Success</span> {{ role }} <br>
             {% if role == 'ROLE_USER' %}
-                <a href="{{ path("member_profile", {"id": app.user.id}) }}">Admin Panel</a> <br>
+                <a href="{{ path("member_profile", {"id": app.user.id}) }}">Your Profile</a> <br>
+                <a href="{{ path("members_list") }}">Users list</a><br>
             {%endif %}
 
             {% if role == 'ROLE_ADMIN' %}

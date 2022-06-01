@@ -30,7 +30,6 @@ class GameMasterController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
-
         $chars = $this->getDoctrine()->getManager()
             ->getRepository(Character::class)
             ->findBy(['author' => $user->getId()],[]);
@@ -47,38 +46,7 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
-
-        $weapons = $this->getDoctrine()->getManager()
-            ->getRepository(Weapon::class)
-            ->findBy([]);
-        foreach ($weapons as $weapon)
-        {
-            $tmpChar->getGuns()->add($weapon);
-        }
-        $armor = $this->getDoctrine()->getManager()
-            ->getRepository(Armor::class)
-            ->findBy([]);
-        foreach ($armor as $armorSet)
-        {
-            $tmpChar->getArmors()->add(($armorSet));
-        }
-        $gears = $this->getDoctrine()->getManager()
-            ->getRepository(Gear::class)
-            ->findBy([]);
-        foreach ($gears as $gear)
-        {
-            $tmpChar->getGears()->add($gear);
-        }
-        $cyberwares = $this->getDoctrine()->getManager()
-            ->getRepository(Cyberware::class)
-            ->findBy([]);
-        foreach ($cyberwares as $cyberware)
-        {
-            $tmpChar->getCyberwares()->add($cyberware);
-        }
-
         $form = $this->createForm(CharacterType::class, $tmpChar);
-
         $form->handleRequest($request);
         $user = $this->getUser();
 
@@ -87,46 +55,10 @@ class GameMasterController extends AbstractController
             $tmpChar->setAuthor($user->getId());
             $tmpChar->setDateCreateChar(time());
 
-            $tmpGuns = $tmpChar->getGuns();
-            $guns = array();
-            foreach ($tmpGuns as $gun)
-            {
-                $tmp = array($gun->getName() => $gun->getDamage());
-                array_push($guns, $tmp);
-            }
-            $tmpChar->setWeapons($guns);
-
-            $tmpArmors = $tmpChar->getArmors();
-            $armors = array();
-            foreach ($tmpArmors as $armor) {
-                $armors[] = [
-                    'name' => $armor->getName(),
-                    'body' => $armor->getBody(),
-                    'head' => $armor->getHead()
-                ];
-            }
-            $tmpChar->setArmor($armors);
-
-            $tmpGears = $tmpChar->getGears();
-            $gears = array();
-            foreach ($tmpGears as $gear) {
-                $gears[] = [
-                    'name' => $gear->getName(),
-                    'description' => $gear->getDescription(),
-                ];
-            }
-            $tmpChar->setGear($gears);
-
-            $tmpCyberwares = $tmpChar->getCyberwares();
-            $cyberwares = array();
-            foreach ($tmpCyberwares as $cyberware) {
-                $cyberwares[] = [
-                    'name' => $cyberware->getName(),
-                    'description' => $cyberware->getDescription(),
-                ];
-            }
-            $tmpChar->setCyberware($cyberwares);
-
+            $tmpChar->setArmorsArrayCollection();
+            $tmpChar->setWeaponsArrayCollection();
+            $tmpChar->setGearsArrayCollection();
+            $tmpChar->setCyberwaresArrayCollection();
 
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
@@ -148,7 +80,6 @@ class GameMasterController extends AbstractController
     {
         $game = new Game();
         $form = $this->createForm(GameType::class, $game);
-
         $form->handleRequest($request);
         $user = $this->getUser();
 
@@ -156,7 +87,6 @@ class GameMasterController extends AbstractController
         {
             $game->setAuthor($user->getId());
             $game->setGameadmin($user->getId());
-
             $this->getDoctrine()->getManager()->persist($game);
             $this->getDoctrine()->getManager()->flush();
 
@@ -165,7 +95,6 @@ class GameMasterController extends AbstractController
 
         return $this->render('gamemaster/createForm.html.twig', [
             'form' => $form->createView(),
-            'back_path' => 'gamemaster_create_game'
         ]);
     }
 
