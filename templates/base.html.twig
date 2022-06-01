@@ -23,8 +23,19 @@
             База.хтмл
         {% endblock %}
     </body>
-{% block footer %}
-    Нижний блок, с правой информацией и вообще со всем полезным,  также с кнопкой на главную
-    <a href="/" type="button" class="btn btn-success">На главную</a>
-{% endblock %}
+    {% block footer %}
+        <footer class="card-footer" style="
+    position: relative; /* Фиксированное положение */
+    left: 0; bottom: -37vh; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    width: 100%; /* Ширина слоя */
+    ">
+            <div class="container">
+                <p class="float">
+                    Нижний блок, с правой информацией и вообще со всем полезным,  также с кнопкой на главную
+                    <a href="/" type="button" class="btn btn-success">На главную</a>
+                </p>
+            </div>
+        </footer>
+    {% endblock %}
 </html>
