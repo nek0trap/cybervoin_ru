@@ -65,7 +65,7 @@ class GameMasterController extends AbstractController
             return $this->redirectToRoute('gamemaster_character_list');
         }
 
-        return $this->render('gamemaster/createForm.html.twig', [
+        return $this->render('gamemaster/create_character.html.twig', [
             'char_create_form' => $form->createView()
         ]);
     }
@@ -91,7 +91,7 @@ class GameMasterController extends AbstractController
             return $this->redirectToRoute('gamemaster_list_game');
         }
 
-        return $this->render('gamemaster/createForm.html.twig', [
+        return $this->render('gamemaster/form/create_game.html.twig', [
             'form' => $form->createView(),
         ]);
     }
