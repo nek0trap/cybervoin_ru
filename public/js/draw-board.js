@@ -4,23 +4,23 @@ const chessDict = {
     pawn: '&#9817;'
 }
 
-
-const values = "111111033110331100311223112231112311123111111";
-const lineLength = 5;
-const charactersArray = new Array((values.length / lineLength) * 10 + lineLength).fill(0);
+const chessBoard = $("#chessBoard");
+let values = chessBoard.data("field");
+let lineLength = chessBoard.data("line");
+const charactersArray = new Array(Math.ceil(values.length / lineLength) * 10 + lineLength).fill(0);
+console.log(charactersArray.length);
 const characters = [['22', chessDict['pawn']], ['33', chessDict['rook']]];
 
 $(document).ready(function () {
     var divSquare = '<div id = "c$coord" class = "cell cell-$color"></div>';
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
-    const chessBoard = $("#chessBoard");
+
     for (let i = 0; i < characters.length; i++) {
         charactersArray[characters[i][0]] = characters[i][1];
     }
-    console.log()
     let lineWidth = values.length / lineLength;
-    const ground = ["dirt", "wall", "swamp","water"];
+    const ground = ["dirt", "wall", "swamp", "water", "white"];
     for (let i = 1; i < lineWidth + 1; i++) {
         chessBoard.append("<br>");
         for (let j = 0; j < lineLength; j++) {

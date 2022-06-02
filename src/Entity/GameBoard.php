@@ -72,7 +72,6 @@ class GameBoard
 
 
 
-
     /**
      * Return board like as string
      * @return string
@@ -93,8 +92,12 @@ class GameBoard
     /**
      * @return array
      */
-    public function getCharactersArray(): array
+    public function getCharacters(): array
     {
+        if (isset($this->charactersArray))
+        {
+            $this->setCharactersArray($this->charactersArray);
+        }
         return $this->charactersArray;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\GameBoardType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,7 +73,7 @@ class GameMasterController extends AbstractController
             return $this->redirectToRoute('gamemaster_character_list');
         }
 
-        return $this->render('gamemaster/createForm.html.twig', [
+        return $this->render('gamemaster/forms/createCharacterForm.html.twig', [
             'char_create_form' => $form->createView()
         ]);
     }
@@ -82,23 +83,27 @@ class GameMasterController extends AbstractController
      */
     public function createGame(Request $request): Response
     {
-        $game = new Game();
-        $form = $this->createForm(GameType::class, $game);
-        $form->handleRequest($request);
+        $tmpGame = new Game();
+        $tmpGameboard = new GameBoard();
+
+        $boardForm = $this->createForm(GameBoardType::class, $tmpGameboard);
+        $gameForm = $this->createForm(GameType::class, $tmpGame);
+        $gameForm->handleRequest($request);
         $user = $this->getUser();
 
-        if($form->isSubmitted() && $form->isValid())
+        if($gameForm->isSubmitted() && $gameForm->isValid())
         {
-            $game->setAuthor($user->getId());
-            $game->setGameadmin($user->getId());
-            $this->getDoctrine()->getManager()->persist($game);
+            $tmpGame->setAuthor($user->getId());
+            $tmpGame->setGameadmin($user->getId());
+            $this->getDoctrine()->getManager()->persist($tmpGame);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('gamemaster_list_game');
         }
 
-        return $this->render('gamemaster/createForm.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('gamemaster/forms/createGameForm.html.twig', [
+            'game_create_form' => $gameForm->createView(),
+            'gameboard_create_from' => $boardForm->createView()
         ]);
     }
 
@@ -139,8 +144,6 @@ class GameMasterController extends AbstractController
     {
 
         $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => $id]);
-
-
 
         $data = $request->request->get('charArray');
         if ($data) {
