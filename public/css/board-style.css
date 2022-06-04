@@ -2,6 +2,11 @@
     display: inline-block;
 }
 
+.remove-figure-box {
+    border: solid 1px gray;
+    height: 64px;
+}
+
 .spawn-figure-box {
     border: solid 1px gray;
     width: 64px;

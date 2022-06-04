@@ -9,17 +9,12 @@ let values = chessBoard.data("field");
 let lineLength = chessBoard.data("line");
 const charactersArray = new Array(10001).fill(0);
 const characters = chessBoard.data("characters").split(",");
-console.log(characters);
 
 $(document).ready(function () {
     selectFigure();
     var divSquare = '<div id = "c$coord" class = "cell cell-$color"></div>';
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
-
-    for (let i = 0; i < characters.length; i++) {
-        charactersArray[characters[i][0]] = characters[i][1];
-    }
     let lineWidth = values.length / lineLength;
     const ground = ["dirt", "wall", "swamp", "water", "white"];
     for (let i = 1; i < lineWidth + 1; i++) {
@@ -48,6 +43,15 @@ function setDroppable() {
             moveFigure(frCoord, toCoord);
         }
     });
+
+    $('.remove-figure-box').droppable({
+        drop: function (event, ui) {
+            let frCoord = ui.draggable.attr('id').substring(1);
+            charactersArray[frCoord] = 0;
+            ui.draggable.remove();
+            saveState();
+        }
+    })
 }
 
 function selectFigure() {
@@ -67,7 +71,7 @@ function selectFigure() {
 
 function showFigures(characters) {
     charactersArray[10001] = "&#9815";
-    for (let i = 10; i < characters.length+10; i++) {
+    for (let i = 0; i < characters.length; i++) {
         if (characters[i] !== "0") {
             showFigureAt(i, characters[i]);
         }
