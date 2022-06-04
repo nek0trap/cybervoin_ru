@@ -1,8 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset("css/board-style.css") }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <div id="chessBoard" data-field="{{ gameboard.board }}" data-line="{{ gameboard.linelenght }}"></div>
+    <div class="d-flex flex-column">
+        <div class="row p-2">
+            <div class="row m-2" style="font-size: 30px">Paste character</div>
+            <div style="margin-bottom: 10px" class="col-1">
+                <select class="form-select-md p-2 m-1 row" id="figuremaker" style="width: 160px">
+                    <option value="&#9814;">Rook</option>
+                    <option value="&#9815;" selected="selected">Bishop</option>
+                    <option value="&#9817;">Pawn</option>
+                </select>
+            </div>
+            <div class="spawn-figure-box my-auto col-1" style="margin-left: 25px">
+            </div>
+        </div>
+    </div>
+    <div id="chessBoard" data-field="{{ gameboard.board }}" data-line="{{ gameboard.linelenght }}" data-characters="{{ gameboard.characters|join(',') }}"></div>
+
     <script src="{{ asset("js/draw-board.js") }}"></script>
 {% endblock %}

@@ -7,11 +7,12 @@ const chessDict = {
 const chessBoard = $("#chessBoard");
 let values = chessBoard.data("field");
 let lineLength = chessBoard.data("line");
-const charactersArray = new Array(Math.ceil(values.length / lineLength) * 10 + lineLength).fill(0);
-console.log(charactersArray.length);
-const characters = [['22', chessDict['pawn']], ['33', chessDict['rook']]];
+const charactersArray = new Array(10001).fill(0);
+const characters = chessBoard.data("characters").split(",");
+console.log(characters);
 
 $(document).ready(function () {
+    selectFigure();
     var divSquare = '<div id = "c$coord" class = "cell cell-$color"></div>';
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
@@ -49,19 +50,39 @@ function setDroppable() {
     });
 }
 
+function selectFigure() {
+    let select = $("#figuremaker");
+    let spawnbox = $(".spawn-figure-box");
+    spawnbox.html(`<div id="f10001" class ="figure">${select.val()}</div>`);
+    let ss = $("");
+    select.change(function () {
+        let value = select.val();
+        charactersArray[10001] = value;
+        spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
+        setDraggable();
+        console.log(value);
+    })
+
+}
+
 function showFigures(characters) {
-    for (let i = 0; i < characters.length; i++) {
-        showFigureAt(String(characters[i][0]), characters[i][1]);
+    charactersArray[10001] = "&#9815";
+    for (let i = 10; i < characters.length+10; i++) {
+        if (characters[i] !== "0") {
+            showFigureAt(i, characters[i]);
+        }
     }
 }
 
-function moveFigure(frCoord, toCoord){
+function moveFigure(frCoord, toCoord) {
+    let figuremaker = $("#figuremaker");
+    $(".spawn-figure-box").html(`<div id="f10001" class ="figure">${figuremaker.val()}</div>`);
+    charactersArray[10001] = figuremaker.val();
     let figure = charactersArray[frCoord];
     console.log(frCoord, toCoord);
     if (charactersArray[toCoord] === 0) {
         charactersArray[frCoord] = 0;
         showFigureAt(toCoord,figure);
-        setDraggable();
         saveState();
     } else {
         showFigureAt(frCoord,figure);
