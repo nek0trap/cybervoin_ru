@@ -1,0 +1,21 @@
+.footer {
+    background-color: #e1e1e1;
+    min-height: 270px;
+}
+
+.footer__main {
+    width: 70%;
+    margin: 0 auto;
+    color: white;
+    background-color: #727272;
+    min-height: 270px;
+}
+
+.footer__main a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer__main {
+    padding-top: 15px;
+}
