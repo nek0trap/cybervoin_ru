@@ -32,6 +32,19 @@ class Armor
      */
     private $body;
 
+    /**
+     * @param $name
+     * @param $head
+     * @param $body
+     */
+    public function __construct($name, $head, $body)
+    {
+        $this->name = $name;
+        $this->head = $head;
+        $this->body = $body;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

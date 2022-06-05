@@ -1,47 +1,39 @@
 {% extends 'base.html.twig' %}
 
     {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link href="{{ asset('/css/character-style.css') }}" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     {% endblock %}
 {% block body %}
     <a href="{{ path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
     <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
-
-
-
-
     <div class="row">
         <div class="logo-and-userpic col-2">
             <div class="logo">Logotipchik</div>
             <div class="userpic">User avatar</div>
+            <div class="character-name">{{ charcter.name }} {{ charcter.id }}</div>
         </div>
         <div class="col">
             <div class="row">
-                <div style="width: 30%;">
-                    <div class="cont other-label">{{ charcter.name }}</div>
-                </div>
-                <div style="width: 20%;">
-                    <div class="cont other-label">{{ charcter.id }}</div>
+
+                <div class="hp-col">
+                    <div class="other-label">Starting hits</div>
+                    <div class="other-box health">{{ charcter.health }}</div>
                 </div>
                 <div class="hp-col">
-                    <div class="other-label">starting hits</div>
-                    <div class="other-box">{{ charcter.health }}</div>
+                    <div class="other-label">Wounded</div>
+                    <div class="other-box health">{{ charcter.wounded }}</div>
                 </div>
                 <div class="hp-col">
-                    <div class="other-label">wounded</div>
-                    <div class="other-box">{{ charcter.wounded }}</div>
-                </div>
-                <div class="hp-col">
-                    <div class="other-label">death save</div>
-                    <div class="other-box">{{ charcter.deathsave }}</div>
+                    <div class="other-label">Death save</div>
+                    <div class="other-box health">{{ charcter.deathsave }}</div>
                 </div>
             </div>
-            <div class="stats nd2-row row">
+            <div class="nd2-row row">
                 {% for key, value in charcter.stats %}
-                    <div class="col">
-                        <div class="other-label">{{ key }}</div>
-                        <div class="other-box">{{ value }}</div>
+                    <div class="col label-box">
+                        <div class="other-label stats-label">{{ key }}</div>
+                        <div class="other-box stats">{{ value }}</div>
                     </div>
                 {% endfor %}
             </div>
@@ -55,75 +47,60 @@
                     {#                    {% endfor %}#}
                 </div>
                 <div class="col">
-                    <div class="other-label">armor</div>
-                    <div class="cont">
+                    <div class="other-label">Armor</div>
                         {% for armor in charcter.armor %}
-                            <div class="other-box row">
-                                {{ armor.name }}
-                            </div>
-                            <div class="row">
-                                <div class="other-box col">
-                                    <div> Head </div>
-                                    <div> Body </div>
-                                </div>
-                                <div class="other-box col">
-                                    <div> {{ armor.head }} </div>
-                                    <div> {{ armor.body }} </div>
-                                </div>
-                            </div>
+                    <div class="row" style="padding: 0 10px 0 10px; margin-top: 10px">
+                        <div class="col" style="padding-left: 0">
+                            <div class="other-box armor-field">Name</div>
+                            <div class="other-box armor-field">Head</div>
+                            <div class="other-box armor-field">Body</div>
+                        </div>
+                        <div class="col px-0">
+                            <div class="other-box armor-field"> {{ armor.name }} </div>
+                            <div class="other-box armor-field"> {{ armor.head }} </div>
+                            <div class="other-box armor-field"> {{ armor.body }} </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="col">
-                    <div class="other-label">weapons</div>
-                    <div class="cont">
+                    <div class="other-label">Weapons</div>
                         {% for key, gun in charcter.weapons %}
-                            <div class="other-box row">
-                                <div class="col">
+                        <div class="row" style="padding: 0 10px 0 10px; margin-top: 10px">
+                                <div class="col other-box" style="margin-right: 10px">
                                     {% for name, damage in gun %}
                                         {{ name }}
                                     {% endfor %}
                                 </div>
-                                <div class="col">
+                                <div class="col other-box">
                                     {% for name, damage in gun %}
                                         {{ damage }}
                                     {% endfor %}
                                 </div>
-                            </div>
+                        </div>
                         {% endfor %}
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
     <div class="side-row row">
-        <div class="col">
+        <div class="col bio-box">
             <div class="other-label">Bio</div>
-            <div class="biography other-box">{{ charcter.bio }}</div>
+            <div class="other-box" style="margin-top: 10px">{{ charcter.bio }}</div>
         </div>
-        <div class="col">
-            <div class="other-label ">cyberware</div>
+        <div class="col-3">
+            <div class="other-label">Cyberware</div>
             {% for cyberware in charcter.cyberware %}
-                <div>
-                    <div class="other-label">{{ cyberware.name }}</div>
-                    <div class="other-box">{{ cyberware.description }}</div>
-                </div>
+                <div class="name-class other-label" style="margin-top: 10px">{{ cyberware.name }}</div>
+                <div class="other-box">{{ cyberware.description }}</div>
             {% endfor %}
         </div>
-        <div class="col">
-            <div class="other-label ">gear</div>
+        <div class="col-3">
+            <div class="other-label ">Gear</div>
             {% for gear in charcter.gear %}
-                <div>
-                    <div class="other-label">{{ gear.name }}</div>
-                    <div class="other-box">{{ gear.description }}</div>
-                </div>
+                <div class="name-class other-label" style="margin-top: 10px">{{ gear.name }}</div>
+                <div class="other-box">{{ gear.description }}</div>
             {% endfor %}
         </div>
     </div>
-
-
-
-
-
 {% endblock %}

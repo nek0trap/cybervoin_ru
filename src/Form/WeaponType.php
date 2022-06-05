@@ -13,10 +13,10 @@ class WeaponType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class, [
-            'label' => 'Weapon Name',
+            'label' => 'Name',
         ]);
         $builder->add('damage', TextType::class, [
-            'label' => 'Write Damage',
+            'label' => 'Damage',
         ]);
     }
 

@@ -10,7 +10,7 @@ function createAddRemoveButtonWithId(buttonId) {
     var buttonCounter = buttonList.data('widget-counter') || buttonList.children().length;
 
     $(`.add-another-${buttonId}`).click(function () {
-        var newWidget = `<li class="list-group-item ${buttonId}-list">` + buttonList.attr('data-prototype') + `</li>`;
+        var newWidget = `<li class="list-group-item ${buttonId}-list" style="width: 300px">` + buttonList.attr('data-prototype') + `</li>`;
         newWidget = newWidget.replace(/__name__/g,buttonCounter);
         buttonCounter++;
         buttonList.data('widget-counter', buttonCounter);

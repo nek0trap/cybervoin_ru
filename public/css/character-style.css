@@ -1,36 +1,66 @@
 body {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-div {
-    padding: 5px;
+.row {
+    padding: 0;
 }
 
-.char-name {
-    background-color: #198C63;
-    display: flex;
-}
-
-.char-class {
-    background-color: #198C63;
-    display: flex;
+.col {
+    padding: 0 10px 0 10px;
 }
 
 .hp-col {
-    width: 16%;
+    text-align: center;
+    width: 16.5%;
 }
 
-.cont{
-    height: 95%;
-    width: 95%;
-    margin: auto;
+.health {
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .other-label{
+    padding: 5px 0 5px 0;
     background-color: gray;
+    text-align: center;
+    font-weight: bold;
 }
 
 .other-box{
     background-color: lightgray;
+    padding: 10px;
+}
+
+.armor-field{
+    margin-bottom: 10px;
+}
+
+.stats-label {
+    font-size: 20px;
+}
+
+.stats {
+    text-align: center;
+    font-size: 35px;
+    padding: 0;
+}
+
+
+.name-class {
+    text-align: left;
+    padding-left: 10px;
+
+}
+
+
+.character-name {
+    font-size: 40px;
+    background-color: gray;
+}
+
+
+.label-box {
+    padding: 10px;
 }

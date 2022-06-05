@@ -2,9 +2,23 @@
     display: inline-block;
 }
 
+.remove-figure-box {
+    border: solid 1px gray;
+    height: 64px;
+}
+
+.spawn-figure-box {
+    border: solid 1px gray;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
 
 .cell {
-    border: solid 1px white;
+    border: solid 1px gray;
     float: left;
     width: 64px;
     height: 64px;
@@ -17,6 +31,7 @@
 
 .figure {
     cursor: pointer;
+    color: red;
 }
 
 .cell-water{

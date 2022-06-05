@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\GameBoardType;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Armor;
 use App\Entity\Character;
@@ -45,11 +47,17 @@ class GameMasterController extends AbstractController
     public function charForm(Request $request): Response
     {
         $tmpChar = new Character();
+
+        $tmpChar->getGuns()->add(new Weapon("1d4", "Salovik"));
+        $tmpChar->getGears()->add(new Gear('Guitar', 'Thing that gives music to people'));
+        $tmpChar->getCyberwares()->add(new Cyberware('CyberGuitar', 'Thing that gives CYBERmusic to people'));
+        $tmpChar->getArmors()->add(new Armor('Kevlar', 7,7));
+
         $form = $this->createForm(CharacterType::class, $tmpChar);
         $form->handleRequest($request);
         $user = $this->getUser();
 
-        if($form->isSubmitted() && $form->isValid())
+        if ($form->isSubmitted() && $form->isValid())
         {
             $tmpChar->setAuthor($user->getId());
             $tmpChar->setDateCreateChar(time());
@@ -65,34 +73,37 @@ class GameMasterController extends AbstractController
             return $this->redirectToRoute('gamemaster_character_list');
         }
 
-        return $this->render('gamemaster/create_character.html.twig', [
+        return $this->render('gamemaster/forms/createCharacterForm.html.twig', [
             'char_create_form' => $form->createView()
         ]);
     }
-
 
     /**
      * @Route("/game/create/game", name="gamemaster_create_game")
      */
     public function createGame(Request $request): Response
     {
-        $game = new Game();
-        $form = $this->createForm(GameType::class, $game);
-        $form->handleRequest($request);
+        $tmpGame = new Game();
+        $tmpGameboard = new GameBoard();
+
+        $boardForm = $this->createForm(GameBoardType::class, $tmpGameboard);
+        $gameForm = $this->createForm(GameType::class, $tmpGame);
+        $gameForm->handleRequest($request);
         $user = $this->getUser();
 
-        if($form->isSubmitted() && $form->isValid())
+        if($gameForm->isSubmitted() && $gameForm->isValid())
         {
-            $game->setAuthor($user->getId());
-            $game->setGameadmin($user->getId());
-            $this->getDoctrine()->getManager()->persist($game);
+            $tmpGame->setAuthor($user->getId());
+            $tmpGame->setGameadmin($user->getId());
+            $this->getDoctrine()->getManager()->persist($tmpGame);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('gamemaster_list_game');
         }
 
-        return $this->render('gamemaster/form/create_game.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('gamemaster/forms/createGameForm.html.twig', [
+            'game_create_form' => $gameForm->createView(),
+            'gameboard_create_from' => $boardForm->createView()
         ]);
     }
 
@@ -129,12 +140,26 @@ class GameMasterController extends AbstractController
     /**
      * @Route("/game/board/{id}", name="game_board_byId")
      */
-    public function getGameBoardById($id): Response
+    public function getGameBoardById($id, Request $request)
     {
-        $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => 1]);
+
+        $gameboard = $this->getDoctrine()->getManager()->getRepository(GameBoard::class)->findOneBy(['id' => $id]);
+
+        $data = $request->request->get('charArray');
+        if ($data) {
+            $gameboard->setCharactersArray(explode(',',$data));
+            $this->getDoctrine()->getManager()->persist($gameboard);
+            $this->getDoctrine()->getManager()->flush();
+            return new JsonResponse(explode(',',$data));
+        }
 
         return $this->render('gamemaster/gameboard.html.twig', [
             'gameboard' => $gameboard,
         ]);
+    }
+
+
+    public function saveGameBoard(Request $request)
+    {
     }
 }
