@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        <div>
+            {{ form_widget(game_create_form.submit, { 'attr': {'class': 'btn btn-primary btn-lg'}, 'label': 'Create'}) }}
+            <div>
+                {{ form_label(game_create_form.Name) }}
+                {{ form_widget(game_create_form.Name) }}
+            </div>
+            <div>
+                {{ form_label(game_create_form.description) }}
+                {{ form_widget(game_create_form.description) }}
+            </div>
+            <div>
+                {{ form_label(game_create_form.GameBoard) }}
+                {{ form_widget(game_create_form.GameBoard) }}
+            </div>
+        </div>
+        <div>
+            {{ form(gameboard_create_from) }}
+        </div>
+    </div>
+{% endblock %}

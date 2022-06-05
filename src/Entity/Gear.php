@@ -22,10 +22,21 @@ class Gear
      */
     private $name;
 
+
     /**
      * @ORM\Column(type="text", nullable=false))
      */
     private $description;
+
+    /**
+     * @param $name
+     * @param $description
+     */
+    public function __construct($name, $description)
+    {
+        $this->name = $name;
+        $this->description = $description;
+    }
 
     public function getId(): ?int
     {
