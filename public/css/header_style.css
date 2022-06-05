@@ -1,0 +1,18 @@
+.header {
+    background-color: #e172e1;
+    min-height: 60px;
+}
+
+
+.header__main {
+    color: white;
+    max-width: 70%;
+    margin: 0 auto;
+    min-height: 60px;
+    background-color: #e120d3;
+}
+
+.col_text {
+    font-weight: bold;
+    width: 50px;
+}
