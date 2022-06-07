@@ -1,0 +1,40 @@
+.main-content {
+    width: 70%;
+    background-color: #ffcccf;
+    margin: 0 auto;
+}
+
+.news-body {
+    float: left;
+    width: 85%;
+    background-color: #0012ff;
+    padding: 25px;
+}
+
+.news-body .time_post {
+    float: right;
+    color: #4e4e4e;
+    font-size: 14px;
+}
+
+.right-menu {
+    float: right;
+    width: 15%;
+}
+
+.right-menu a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.right-menu .p-2 {
+    background-color: #AA3333;
+    width: 100%;
+}
+
+.right-menu .p-2:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #222222;
+}
