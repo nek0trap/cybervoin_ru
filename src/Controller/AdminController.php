@@ -23,6 +23,16 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/help", name="admin_faq")
+     */
+    public function adminHelpList(): Response
+    {
+        return $this->render('admin/help/index.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
      * @Route("/admin/help/createUser", name="admin_faq_user")
      */
     public function createUser(): Response
@@ -98,7 +108,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/createPost", name="admin_char_byId_delete")
+     * @Route("/admin/createPost", name="admin_post_create")
      */
     public function createPostForm(Request $request): Response
     {

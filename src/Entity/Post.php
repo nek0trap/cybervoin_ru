@@ -38,6 +38,12 @@ class Post
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="text", nullable=true))
+     * @var string
+     */
+    private $urlAvatars;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,4 +113,19 @@ class Post
         $this->dateCreatePost = $dateCreatePost;
     }
 
+    /**
+     * @return string
+     */
+    public function getUrlAvatars(): ?string
+    {
+        return $this->urlAvatars;
+    }
+
+    /**
+     * @param string $urlAvatars
+     */
+    public function setUrlAvatars(string $urlAvatars): void
+    {
+        $this->urlAvatars = $urlAvatars;
+    }
 }

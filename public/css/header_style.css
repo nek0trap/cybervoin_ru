@@ -1,5 +1,5 @@
 .header {
-    background-color: #e172e1;
+    background-color: #cccccc;
 }
 
 
@@ -8,17 +8,21 @@
     color: white;
     max-width: 70%;
     margin: 0 auto;
-    background-color: #e120d3;
+    background-color: #4c4c4c;
 }
 
 .p-3:hover {
-    background-color: #d700ff;
+    background-color: #8c8c8c;
     cursor: pointer;
 }
 
 .p-3 a {
     color: white;
     text-decoration: none;
+}
+
+.red-button {
+    background-color: #e34a4e;
 }
 
 .p-3 a:hover {

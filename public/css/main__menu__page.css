@@ -1,14 +1,14 @@
 .main-content {
     width: 70%;
-    background-color: #ffcccf;
+    background-color: #e3e3e3;
     margin: 0 auto;
 }
 
 .news-body {
     float: left;
     width: 85%;
-    background-color: #0012ff;
     padding: 25px;
+    background-color: #e3e3e3;
 }
 
 .news-body .time_post {
@@ -29,12 +29,12 @@
 }
 
 .right-menu .p-2 {
-    background-color: #AA3333;
+    background-color: #181818;
     width: 100%;
 }
 
 .right-menu .p-2:hover {
     cursor: pointer;
     color: white;
-    background-color: #222222;
+    background-color: #494949;
 }
