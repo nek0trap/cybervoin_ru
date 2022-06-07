@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,11 @@ class MainController extends AbstractController
      */
     public function showMenu(): Response
     {
+        $posts = $this->getDoctrine()->getManager()->getRepository(Post::class)->findAll();
+
         return $this->render('main_menu/index.html.twig', [
             'controller_name' => 'MainMenuController',
+            'posts' => $posts,
         ]);
     }
 

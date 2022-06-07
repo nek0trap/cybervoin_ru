@@ -1,18 +1,28 @@
 .header {
     background-color: #e172e1;
-    min-height: 60px;
 }
 
 
 .header__main {
+    font-weight: bold;
     color: white;
     max-width: 70%;
     margin: 0 auto;
-    min-height: 60px;
     background-color: #e120d3;
 }
 
-.col_text {
-    font-weight: bold;
-    width: 50px;
+.p-3:hover {
+    background-color: #d700ff;
+    cursor: pointer;
 }
+
+.p-3 a {
+    color: white;
+    text-decoration: none;
+}
+
+.p-3 a:hover {
+    color: white;
+    text-decoration: none;
+}
+

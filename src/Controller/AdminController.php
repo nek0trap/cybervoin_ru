@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Character;
+use App\Entity\Post;
+use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -91,6 +94,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/characters/character.html.twig', [
             'charcter' => $char,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/createPost", name="admin_char_byId_delete")
+     */
+    public function createPostForm(Request $request): Response
+    {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $post->setDateCreatePost(time());
+            $post->setAuthor($this->getUser());
+            $this->getDoctrine()->getManager()->persist($post);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('home_page');
+        }
+
+        return $this->render('admin/forms/post_create_form.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

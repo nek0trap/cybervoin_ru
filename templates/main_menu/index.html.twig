@@ -2,29 +2,44 @@
 
 
 {% block body %}
-    <p style="padding: 100px 300px"> Now, repository is in work , we try fast complete :) </p>
-    <p style="padding: 0 300px; float: right"> <span class="badge badge-info">Info</span> Your roles in system: <br>
-        {% for role in app.user.roles %}
-            <br>
-            <span class="badge badge-success">Success</span> {{ role }} <br>
-            {% if role == 'ROLE_USER' %}
-                <a href="{{ path("member_profile", {"id": app.user.id}) }}">Your Profile</a> <br>
-                <a href="{{ path("members_list") }}">Users list</a><br>
-            {%endif %}
+    <head>
+        <link href="{{ asset('css/main__menu__page.css') }}" rel="stylesheet">
+    </head>
+    <section name="main">
+        <div class="main-content">
+            <div class="news-body">
+                {% for post in posts %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://i.imgur.com/W94AD7b.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.name }}</h5>
+                        <p class="card-text">{{ post.description }}</p>
+                        <span class="time_post">Date post: {{ post.dateCreatePost|date("d.m.Y") }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="right-menu">
+                <div class="d-flex align-items-start flex-column">
+                    {% if is_granted('ROLE_USER') %}
+                        <div class="p-2"><a href="{{ path("member_profile", {"id": app.user.id}) }}">My Profile</a></div>
+                        <div class="p-2"><a href="{{ path("members_list") }}">User List</a></div>
+                    {% endif %}
+                    {% if is_granted('ROLE_GAMEMASTER') %}
+                        <div class="p-2"><a href="{{ path("gamemaster_create_char") }}">Create Character for game</a></div>
+                        <div class="p-2"><a href="{{ path("gamemaster_character_list") }}">Character List</a></div>
+                        <div class="p-2"><a href="{{ path("gamemaster_create_game") }}">Create new game</a></div>
+                        <div class="p-2"><a href="{{ path("gamemaster_list_game") }}">View all game</a></div>
+                        <div class="p-2"><a href="{{ path("game_board_byId", {'id': 1}) }}">Test1</a></div>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="p-2"><a href="/admin">Admin Panel</a></div>
+                        <div class="p-2"><a href="/admin/help">Admins Help</a></div>
+                        <div class="p-2"><a href="{{ path("admin_char_list") }}">Characters List</a></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
-            {% if role == 'ROLE_ADMIN' %}
-                <a href="/admin">Admin Panel</a> <br>
-                <a href="/admin/help/createUser">Create User</a><br>
-                <a href="{{ path("admin_char_list") }}">Characters List</a>
-            {%endif %}
-            {% if role == 'ROLE_GAMEMASTER' %}
-                <a href="{{ path("gamemaster_create_char") }}">Create Character for game</a> <br>
-                <a href="{{ path("gamemaster_character_list") }}">Character List</a> <br>
-                <a href="{{ path("gamemaster_create_game") }}">Create new game</a> <br>
-                <a href="{{ path("gamemaster_list_game") }}">View all game</a> <br>
-                <a href="{{ path("game_board_byId", {'id': 1}) }}">Test1</a>
-
-            {% endif %}
-    {% endfor %}</p>
-
+    </section>
 {% endblock %}
