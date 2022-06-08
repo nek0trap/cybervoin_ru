@@ -11,7 +11,7 @@ const charactersArray = new Array(10001).fill(0);
 const characters = chessBoard.data("characters").split(",");
 
 $(document).ready(function () {
-    selectFigure();
+    figureSelector();
     var divSquare = '<div id = "c$coord" class = "cell cell-$color"></div>';
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
@@ -54,11 +54,10 @@ function setDroppable() {
     })
 }
 
-function selectFigure() {
+function figureSelector() {
     let select = $("#figuremaker");
     let spawnbox = $(".spawn-figure-box");
     spawnbox.html(`<div id="f10001" class ="figure">${select.val()}</div>`);
-    let ss = $("");
     select.change(function () {
         let value = select.val();
         charactersArray[10001] = value;
@@ -66,7 +65,11 @@ function selectFigure() {
         setDraggable();
         console.log(value);
     })
+}
 
+function weaponSelector() {
+    let select = $("#weaponmaker");
+    return [select.val(), select.find("option:selected").text()];
 }
 
 function showFigures(characters) {
@@ -89,6 +92,8 @@ function moveFigure(frCoord, toCoord) {
         showFigureAt(toCoord,figure);
         saveState();
     } else {
+        let dmgAndText = weaponSelector();
+        console.log(`${charactersArray[frCoord]}№${frCoord} attaced ${charactersArray[toCoord]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
         showFigureAt(frCoord,figure);
     }
 }
