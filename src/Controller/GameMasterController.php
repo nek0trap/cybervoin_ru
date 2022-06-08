@@ -44,7 +44,7 @@ class GameMasterController extends AbstractController
     /**
      * @Route("/game/character/form", name="gamemaster_create_char")
      */
-    public function charForm(Request $request): Response
+    public function createCharacterForm(Request $request): Response
     {
         $tmpChar = new Character();
 
