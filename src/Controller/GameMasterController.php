@@ -83,6 +83,7 @@ class GameMasterController extends AbstractController
      */
     public function createGame(Request $request): Response
     {
+
         $tmpGame = new Game();
         $tmpGameboard = new GameBoard();
 
@@ -91,8 +92,14 @@ class GameMasterController extends AbstractController
         $gameForm->handleRequest($request);
         $user = $this->getUser();
 
-        if($gameForm->isSubmitted() && $gameForm->isValid())
+        if($gameForm->isSubmitted()
+            && $gameForm->isValid()
+            && $boardForm->isSubmitted()
+            && $boardForm->isValid())
         {
+            $tmpGameboard->setCharactersArray([]);
+            dd($tmpGameboard);
+            $tmpGame->setGameboard($tmpGameboard);
             $tmpGame->setAuthor($user->getId());
             $tmpGame->setGameadmin($user->getId());
             $this->getDoctrine()->getManager()->persist($tmpGame);

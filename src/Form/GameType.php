@@ -18,15 +18,6 @@ class GameType extends AbstractType
     {
         $builder->add('Name', TextType::class)
         ->add('description', TextareaType::class)
-        ->add('GameBoard', EntityType::class, [
-            'class' => GameBoard::class,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('p')
-                    ->orderBy('p.id', 'ASC');
-            },
-            'choice_label' => 'name',
-            'label' => 'Preset'
-            ])
         ->add('submit', SubmitType::class);
     }
 }

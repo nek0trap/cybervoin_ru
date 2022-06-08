@@ -19,11 +19,6 @@ class GameBoard
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    protected $name;
-
-    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $charactersArray = [];
@@ -37,12 +32,6 @@ class GameBoard
      * @ORM\Column(type="text")
      */
     protected $board;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=false, options={"default" : 0})
-     * @var boolean
-     */
-    protected $isAvailable;
 
     /**
      * Return id board
@@ -108,14 +97,6 @@ class GameBoard
     {
         $this->charactersArray = $charactersArray;
     }
-
-
-
-    public function isAvailable(): Boolean
-    {
-        return $this->isAvailable;
-    }
-
     /**
      * @param bool $isAvailable
      */
