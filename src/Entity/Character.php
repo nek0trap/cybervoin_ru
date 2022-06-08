@@ -276,9 +276,9 @@ class Character
         return $this->skills;
     }
 
-    public function setSkills(array $skills): self
+    public function setSkills(CharacterSkillPreset $skills): self
     {
-        $this->skills = $skills;
+        $this->skills = $skills->getSkills();
 
         return $this;
     }
