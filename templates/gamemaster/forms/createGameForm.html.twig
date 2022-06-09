@@ -2,8 +2,8 @@
 
 {% block body %}
     <div class="d-flex justify-content-center">
+        {{ form_start(game_create_form) }}
         <div>
-            {{ form_widget(game_create_form.submit, { 'attr': {'class': 'btn btn-primary btn-lg'}, 'label': 'Create'}) }}
             <div>
                 {{ form_label(game_create_form.Name) }}
                 {{ form_widget(game_create_form.Name) }}
@@ -13,8 +13,15 @@
                 {{ form_widget(game_create_form.description) }}
             </div>
             <div>
-                {{ form(gameboard_create_from) }}
+                {{ form_label(game_create_form.gameboardForm) }}
+                {% for gameBoard in  game_create_form.gameboardForm%}
+                {{ form_widget(gameBoard) }}
+                {% endfor %}
             </div>
         </div>
+        <div>
+            {{ form_widget(game_create_form.submit, { 'attr': {'class': 'btn btn-primary btn-lg'}, 'label': 'Create'}) }}
+        </div>
+        {{ form_end(game_create_form) }}
     </div>
 {% endblock %}

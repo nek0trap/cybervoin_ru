@@ -6,8 +6,8 @@ use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 /**
- * @ORM\Entity(repositoryClass=CharacterRepository::class)
  * @ORM\Table(name="`character`")
+ * @ORM\Entity(repositoryClass=CharacterRepository::class)
  */
 class Character
 {
@@ -228,7 +228,8 @@ class Character
     {
         $ac = $this->getArmors();
         $armors = array();
-        foreach ($ac as $value) {
+        foreach ($ac as $value)
+        {
             $armors[] = [
                 'name' => $value->getName(),
                 'body' => $value->getBody(),

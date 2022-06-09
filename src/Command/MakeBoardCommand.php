@@ -48,7 +48,7 @@ class MakeBoardCommand extends Command
         }
 
         $board->setName($input->getArgument('name'));
-        $board->setLinelenght($input->getArgument('line_length'));
+        $board->setLineLength($input->getArgument('line_length'));
         $board->setBoard($input->getArgument('board'));
         $board->setIsAvailable(true);
 

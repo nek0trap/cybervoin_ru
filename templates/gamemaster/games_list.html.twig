@@ -1,13 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ set firstEl = games|first }}
-    <h1>First game #{{ firstEl.id }}</h1>
-    <p>
-
-        {{ firstEl.desctiprion }}
-        {{ firstEl.gameadmin }}
-    </p>
-
 
 <table>
     {% for item in games %}

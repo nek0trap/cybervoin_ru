@@ -26,12 +26,20 @@ class GameBoard
     /**
      * @ORM\Column(type="integer")
      */
-    protected $linelenght;
+    protected $lineLength;
 
     /**
      * @ORM\Column(type="text")
      */
     protected $board;
+
+    /**
+     * @param $linelenght
+     */
+    public function __construct()
+    {
+        $this->lineLength = 24;
+    }
 
     /**
      * Return id board
@@ -42,21 +50,23 @@ class GameBoard
         return $this->id;
     }
 
+
+
     /**
      * Return line lenght board
      * @return int|null
      */
     public function getLineLenght(): ?int
     {
-        return $this->linelenght;
+        return $this->lineLength;
     }
 
     /**
-     * @param mixed $linelenght
+     * @param mixed $lineLength
      */
-    public function setLinelenght($linelenght): void
+    public function setLineLength($lineLength): void
     {
-        $this->linelenght = $linelenght;
+        $this->lineLength = $lineLength;
     }
 
 

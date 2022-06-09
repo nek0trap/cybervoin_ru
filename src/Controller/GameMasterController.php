@@ -56,7 +56,6 @@ class GameMasterController extends AbstractController
         $form = $this->createForm(CharacterType::class, $tmpChar);
         $form->handleRequest($request);
         $user = $this->getUser();
-
         if ($form->isSubmitted() && $form->isValid())
         {
             $tmpChar->setAuthor($user->getId());
@@ -66,6 +65,7 @@ class GameMasterController extends AbstractController
             $tmpChar->setWeaponsArrayCollection();
             $tmpChar->setGearsArrayCollection();
             $tmpChar->setCyberwaresArrayCollection();
+
 
             $this->getDoctrine()->getManager()->persist($tmpChar);
             $this->getDoctrine()->getManager()->flush();
@@ -79,27 +79,19 @@ class GameMasterController extends AbstractController
     }
 
     /**
-     * @Route("/game/create/game", name="gamemaster_create_game")
+     * @Route("/game/create/", name="gamemaster_create_game")
      */
     public function createGame(Request $request): Response
     {
 
         $tmpGame = new Game();
-        $tmpGameboard = new GameBoard();
-
-        $boardForm = $this->createForm(GameBoardType::class, $tmpGameboard);
+        $tmpGame->getGameboardForm()->add(new GameBoard());
         $gameForm = $this->createForm(GameType::class, $tmpGame);
         $gameForm->handleRequest($request);
         $user = $this->getUser();
 
-        if($gameForm->isSubmitted()
-            && $gameForm->isValid()
-            && $boardForm->isSubmitted()
-            && $boardForm->isValid())
+        if($gameForm->isSubmitted() && $gameForm->isValid())
         {
-            $tmpGameboard->setCharactersArray([]);
-            dd($tmpGameboard);
-            $tmpGame->setGameboard($tmpGameboard);
             $tmpGame->setAuthor($user->getId());
             $tmpGame->setGameadmin($user->getId());
             $this->getDoctrine()->getManager()->persist($tmpGame);
@@ -110,7 +102,6 @@ class GameMasterController extends AbstractController
 
         return $this->render('gamemaster/forms/createGameForm.html.twig', [
             'game_create_form' => $gameForm->createView(),
-            'gameboard_create_from' => $boardForm->createView()
         ]);
     }
 

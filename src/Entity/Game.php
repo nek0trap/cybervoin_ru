@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,30 +34,33 @@ class Game
     private $author;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $characters = [];
-
-    /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $players = [];
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $gameadmin;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="json")
      */
     private $gameBoard;
 
+    protected $gameboardForm;
+
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * @param $gameboardForm
      */
-    private $lineLength;
+    public function __construct()
+    {
+        $this->gameboardForm = new ArrayCollection();
+    }
+
+    public function getGameboardForm(): ArrayCollection
+    {
+        if (isset($this->gameboardForm[0]))
+        {
+            $this->setGameboard($this->gameboardForm[0]);
+        }
+        return $this->gameboardForm;
+    }
 
     public function getId(): ?int
     {
@@ -99,30 +103,6 @@ class Game
         return $this;
     }
 
-    public function getCharacters(): ?array
-    {
-        return $this->characters;
-    }
-
-    public function setCharacters(?array $characters): self
-    {
-        $this->characters = $characters;
-
-        return $this;
-    }
-
-    public function getPlayers(): ?array
-    {
-        return $this->players;
-    }
-
-    public function setPlayers(?array $players): self
-    {
-        $this->players = $players;
-
-        return $this;
-    }
-
     public function getGameadmin(): ?int
     {
         return $this->gameadmin;
@@ -140,20 +120,9 @@ class Game
         return $this->gameBoard;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLineLength(): ?int
-    {
-        return $this->lineLength;
-    }
-
-
     public function setGameboard(GameBoard $gb): self
     {
-        $this->lineLength = $gb->getLineLenght();
         $this->gameBoard = $gb->getBoard();
-
         return $this;
     }
 }
