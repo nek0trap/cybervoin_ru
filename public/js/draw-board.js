@@ -39,6 +39,10 @@ function setDroppable() {
         drop: function (event, ui) {
             let frCoord = ui.draggable.attr('id').substring(1);
             let toCoord = this.id.substring(1);
+            let frCell = $(`#c${frCoord}`);
+            if (frCell.hasClass("cell-water")) {
+                console.log('obosralsya');
+            }
             ui.draggable.remove();
             moveFigure(frCoord, toCoord);
         }

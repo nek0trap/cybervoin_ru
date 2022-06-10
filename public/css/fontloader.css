@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Cybero";
+    font-style: normal;
+    font-weight: 400;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: url("../fonts/cybero.ttf") format("truetype");
+}
+
+p {
+    font-family: "Cybero", serif;
+    line-height: 0.6;
+    font-size: 40px;
+}

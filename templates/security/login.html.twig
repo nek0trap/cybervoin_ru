@@ -3,8 +3,16 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<div style="width: 800px; margin: 30px auto;">
-<form method="post" style="width: 40%;">
+<head>
+    <link href="{{ asset("css/fontloader.css") }}" rel="stylesheet">
+</head>
+<div class="mx-auto" style="width: 800px;">
+<form class="mx-auto" method="post" style="
+  padding: 50px;
+  position: fixed; top: 40%; left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -15,6 +23,11 @@
         </div>
     {% endif %}
 
+    <div class="d-flex flex-row">
+        <p>Cyber<br>voin</p>
+        <img src="{{ asset('pictures/Logo.svg') }}" alt="Logo" width="90" height="80" style="position: relative; top:-20px;">
+    </div>
+
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputLogin">Login</label>
     <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" autocomplete="username" required autofocus>
@@ -24,10 +37,6 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="_remember_me"> Remember me

@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-<table>
-    {% for item in games %}
-        <tr>
-            <td> {{ item.id }} </td>
-            <td> {{ item.description }} </td>
-            <td> {{ item.gameadmin }} </td>
-        </tr>
-    {% endfor %}
-</table>
+<div>
+    <table>
+        {% for item in games %}
+            <tr>
+                <td>
+                    <a href="{{ path("gameboard_by_Id", {id: 1}) }}">{{ item.id }}</a>
+                </td>
+                <td> {{ item.description }} </td>
+                <td> {{ item.gameadmin }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

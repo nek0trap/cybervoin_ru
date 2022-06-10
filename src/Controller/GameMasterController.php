@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\GameBoardType;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +41,6 @@ class GameMasterController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/game/character/form", name="gamemaster_create_char")
      */
@@ -48,7 +48,7 @@ class GameMasterController extends AbstractController
     {
         $tmpChar = new Character();
 
-        $tmpChar->getGuns()->add(new Weapon("1d4", "Salovik"));
+        $tmpChar->getGuns()->add(new Weapon("1d4", "Knife"));
         $tmpChar->getGears()->add(new Gear('Guitar', 'Thing that gives music to people'));
         $tmpChar->getCyberwares()->add(new Cyberware('CyberGuitar', 'Thing that gives CYBERmusic to people'));
         $tmpChar->getArmors()->add(new Armor('Kevlar', 7,7));
@@ -92,8 +92,10 @@ class GameMasterController extends AbstractController
 
         if($gameForm->isSubmitted() && $gameForm->isValid())
         {
+            $tmpGameboard = $tmpGame->getGameboardForm()[0];
             $tmpGame->setAuthor($user->getId());
             $tmpGame->setGameadmin($user->getId());
+            $this->getDoctrine()->getManager()->persist($tmpGameboard);
             $this->getDoctrine()->getManager()->persist($tmpGame);
             $this->getDoctrine()->getManager()->flush();
 
@@ -136,7 +138,7 @@ class GameMasterController extends AbstractController
     }
 
     /**
-     * @Route("/game/board/{id}", name="game_board_byId")
+     * @Route("/game/board/{id}", name="gameboard_by_Id")
      */
     public function getGameBoardById($id, Request $request)
     {

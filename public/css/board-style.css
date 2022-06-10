@@ -35,15 +35,31 @@
 }
 
 .cell-water{
-    background-color: dodgerblue;
+    background-image: url("../pictures/toilet.png");
+    background-size: 70px;
+    width: 64px;
+    height: 64px;
+}
+
+.cell-white{
+    background-image: url("../pictures/oak_planks.png");
+    background-size: 64px;
+    width: 64px;
+    height: 64px;
 }
 
 .cell-dirt{
-    background-color: saddlebrown;
+    background-image: url("../pictures/spruce_trapdoor.png");
+    background-size: 64px;
+    width: 64px;
+    height: 64px;
 }
 
 .cell-wall {
-    background-color: black;
+    background-image: url("../pictures/stone.png");
+    background-size: 64px;
+    width: 64px;
+    height: 64px;
 }
 
 .cell-swamp {
