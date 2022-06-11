@@ -13,6 +13,8 @@
 
 .p-3:hover {
     background-color: #8c8c8c;
+    color: white;
+    text-decoration: none;
     cursor: pointer;
 }
 

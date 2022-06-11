@@ -114,6 +114,7 @@ class GameMasterController extends AbstractController
     {
         $user = $this->getUser();
         $games = $this->getDoctrine()->getManager()->getRepository(Game::class)->findBy(['author'=>$user->getId()]);
+        $gameboards = $this->getDoctrine();
 
         return $this->render('gamemaster/games_list.html.twig', [
             'games' => $games,

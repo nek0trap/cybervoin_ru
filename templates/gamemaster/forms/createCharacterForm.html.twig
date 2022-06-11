@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container" style="font-size: 20px">
+    <div class="container" style="max-width: 70%; margin: 0 auto;">
         <div class="row">
-            <div class="col border border-3" style="padding: 10px; margin: 10px;  height: 100%">
+            <div class="col" style="padding: 10px; margin: 10px;">
                 {{ form_start(char_create_form) }}
                 <div class="fs-2 m-3">{{ form_row(char_create_form.name) }}</div>
                 <div class="row m-3">
@@ -119,18 +119,3 @@
     </div>
     <script src="{{ asset('js/add-collection-widget.js') }}"></script>
 {% endblock %}
-    {% block footer %}
-        <footer class="card-footer" style="
-    position: relative; /* Фиксированное положение */
-    left: 0; bottom: -23vh; /* Левый нижний угол */
-    padding: 10px; /* Поля вокруг текста */
-    width: 100%; /* Ширина слоя */
-    ">
-            <div class="container">
-                <p class="float">
-                    Нижний блок, с правой информацией и вообще со всем полезным,  также с кнопкой на главную
-                    <a href="/" type="button" class="btn btn-success">На главную</a>
-                </p>
-            </div>
-        </footer>
-    {% endblock %}

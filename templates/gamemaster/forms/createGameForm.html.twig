@@ -1,27 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="d-flex justify-content-center">
+    <div class="container" style="max-width: 70%; margin: 0 auto;">
         {{ form_start(game_create_form) }}
         <div>
-            <div>
-                {{ form_label(game_create_form.Name) }}
-                {{ form_widget(game_create_form.Name) }}
+            <div class="row m-3">
+                <div class="col-1" style="font-size: 30px">{{ form_label(game_create_form.Name) }}</div>
+                <div class="col">{{ form_widget(game_create_form.Name, {'attr': {'style': 'height: 50px; width: 300px; font-size: 28px;' }}) }}</div>
             </div>
-            <div>
-                {{ form_label(game_create_form.description) }}
-                {{ form_widget(game_create_form.description) }}
+            <div class="row m-3">
+                <div class="col" style="font-size: 30px">{{ form_label(game_create_form.description) }}</div>
+                <div class="">{{ form_widget(game_create_form.description, {'attr': {'style': 'height: 200px; width: 100%; font-size: 28px;' }}) }}</div>
             </div>
-            <div>
-                {{ form_label(game_create_form.gameboardForm) }}
+            <div class="row m-3">
                 {% for gameBoard in  game_create_form.gameboardForm%}
-                {{ form_widget(gameBoard) }}
+                    <div class="col-1" style="font-size: 30px">{{ form_label(gameBoard.board) }}</div>
+                    <div class="col">{{ form_widget(gameBoard.board, {'attr': {'style': 'height: 50px; width: 300px; font-size: 28px;' }}) }}</div>
                 {% endfor %}
             </div>
         </div>
         <div>
-            {{ form_widget(game_create_form.submit, { 'attr': {'class': 'btn btn-primary btn-lg'}, 'label': 'Create'}) }}
+            <div class="row mx-4">{{ form_widget(game_create_form.submit, { 'attr': {'class': 'btn btn-primary btn-lg', 'style': 'width: 95px'}, 'label': 'Create'}) }}</div>
         </div>
         {{ form_end(game_create_form) }}
     </div>
 {% endblock %}
+    {% block footer %}
+        <div class="footer" style="position: absolute; bottom: 0; width:100%;">
+            <div class="footer__main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <b>Полезные ссылки</b> <br><br>
+                            <a href="/faq">FAQ</a> <br>
+                            <a href="/admin/help">Документация для администратора</a> <br>
+                            <a href="/gamemaster/help">Документация для гейммастера</a> <br>
+                            <a href="/user/help">Документация для пользователя</a> <br>
+                            <a href="/documation/info">Правовая информация</a> <br>
+                            <a href="/documation/rights">Правовая документация</a> <br>
+                        </div>
+                        <div class="col">
+                            <b>Навигация по сайту</b> <br><br>
+                            <a href="/mm">Главное меню</a> <br>
+                            <a href="/admin/panel">Панель администрация</a> <br>
+                            <a href="/gamemaster/panel">Панель гейммастера</a> <br>
+                        </div>
+                        <div class="col">
+                            <b>Социальные сети</b> <br><br>
+                            <a href="#">Группа ВК</a> <br>
+                            <a href="#">YouTube канал</a> <br>
+                            <a href="#">наш Forum</a> <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

@@ -16,7 +16,13 @@ $(document).ready(function () {
     var divFigure = '<div id="f$coord" class ="figure">$figure</div>';
     let cnt = 0;
     let lineWidth = values.length / lineLength;
-    const ground = ["dirt", "wall", "swamp", "water", "white"];
+    const ground = {
+        0 :"dirt",
+        1: "wall",
+        2: "swamp",
+        3: "water",
+        4: "white"
+    };
     for (let i = 1; i < lineWidth + 1; i++) {
         chessBoard.append("<br>");
         for (let j = 0; j < lineLength; j++) {

@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div>
-    <table>
+    <div class="container p-0" style="max-width: 70%; margin: 0 auto;">
         {% for item in games %}
-            <tr>
-                <td>
-                    <a href="{{ path("gameboard_by_Id", {id: 1}) }}">{{ item.id }}</a>
-                </td>
-                <td> {{ item.description }} </td>
-                <td> {{ item.gameadmin }} </td>
-            </tr>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col"><a href="{{ path("gameboard_by_Id", {id: item.id}) }}">{{ item.id }}</a></div>
+                        <div class="col">{{ item.description }}</div>
+                        <div class="col">{{ item.gameadmin }}</div>
+                    </div>
+                </li>
+            </ul>
         {% endfor %}
-    </table>
-</div>
+    </div>
 {% endblock %}
