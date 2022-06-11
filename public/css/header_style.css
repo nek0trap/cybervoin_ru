@@ -16,7 +16,12 @@
     cursor: pointer;
 }
 
-.p-3 a {
+.side-div {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.top-div a {
     color: white;
     text-decoration: none;
 }

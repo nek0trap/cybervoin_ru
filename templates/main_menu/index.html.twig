@@ -22,20 +22,20 @@
             <div class="right-menu">
                 <div class="d-flex align-items-start flex-column">
                     {% if is_granted('ROLE_USER') %}
-                        <div class="p-2"><a href="{{ path("member_profile", {"id": app.user.id}) }}">My Profile</a></div>
-                        <div class="p-2"><a href="{{ path("members_list") }}">User List</a></div>
+                        <div class="side-div"><a href="{{ path("member_profile", {"id": app.user.id}) }}"><div class="p-2">My Profile</div></a></div>
+                        <div class="side-div"><a href="{{ path("members_list") }}"><div class="p-2">User List</div></a></div>
                     {% endif %}
                     {% if is_granted('ROLE_GAMEMASTER') %}
-                        <div class="p-2"><a href="{{ path("gamemaster_create_char") }}">Create Character for game</a></div>
-                        <div class="p-2"><a href="{{ path("gamemaster_character_list") }}">Character List</a></div>
-                        <div class="p-2"><a href="{{ path("gamemaster_create_game") }}">Create new game</a></div>
-                        <div class="p-2"><a href="{{ path("gamemaster_list_game") }}">View all game</a></div>
+                        <div class="side-div"><a href="{{ path("gamemaster_create_char") }}"><div class="p-2">Create Character for game</div></a></div>
+                        <div class="side-div"><a href="{{ path("gamemaster_character_list") }}"><div class="p-2">Character List</div></a></div>
+                        <div class="side-div"><a href="{{ path("gamemaster_create_game") }}"><div class="p-2">Create new game</div></a></div>
+                        <div class="side-div"><a href="{{ path("gamemaster_list_game") }}"><div class="p-2">View all game</div></a></div>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="p-2"><a href="/admin">Admin Panel</a></div>
-                        <div class="p-2"><a href="/admin/help">Admins Help</a></div>
-                        <div class="p-2"><a href="{{ path("admin_char_list") }}">Characters List</a></div>
-                        <div class="p-2"><a href="{{ path("admin_post_create") }}">Create Post</a></div>
+                        <div class="side-div"><a href="/admin"><div class="p-2">Admin Panel</div></a></div>
+                        <div class="side-div"><a href="/admin/help"><div class="p-2">Admins Help</div></a></div>
+                        <div class="side-div"><a href="{{ path("admin_char_list") }}"><div class="p-2">Characters List</div></a></div>
+                        <div class="side-div"><a href="{{ path("admin_post_create") }}"><div class="p-2">Create Post</div></a></div>
                     {% endif %}
                 </div>
             </div>
