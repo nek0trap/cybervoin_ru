@@ -66,7 +66,7 @@ class UserCreateCommand extends Command
         );
 
         $user->setRoles($roles);
-
+        $user->setRegistraionDate(time());
         $this->em->persist($user);
         $this->em->flush();
 
