@@ -1,5 +1,8 @@
 {% extends 'base.html.twig'%}
 {% block body %}
+    <head>
+        <link href="{{ asset('css/profile_style.css') }}" rel="stylesheet">
+    </head>
     member id:
     {{ member.id }}<br>
     member name:
@@ -13,4 +16,11 @@
     </select>
     <br><br>
     <a href="/">back to main menu</a>
+
+    <div class="main-profile-content">
+        <h1>Профиль пользователя {{ member.username }}</h1>
+        <div class="border-profile">
+
+        </div>
+    </div>
 {% endblock %}
