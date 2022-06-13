@@ -27,17 +27,23 @@
     justify-content: center;
     color: white;
     font-size: 60px;
-    background-size: 70px;
+    background-size: 64px;
 }
 
 .figure {
     cursor: pointer;
-    color: red;
+}
+
+.figure > img {
+    position: relative;
+    bottom: 5px;
+    width: 64px;
+    height: 64px;
 }
 
 .cell-water{
     background-image: url("../pictures/toilet.png");
-
+    background-size: 64px;
     width: 64px;
     height: 64px;
 }

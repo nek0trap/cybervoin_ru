@@ -1,7 +1,6 @@
-const chessDict = {
-    rook: '&#9814;',
-    bishop: '&#9815;',
-    pawn: '&#9817;'
+const figureDict = {
+    "<i class='bi bi-person'></i>": "Rook",
+    "<img src='/icons/WomanSoloFull.svg' alt='WomanFull'/>": "Woman",
 }
 
 const chessBoard = $("#chessBoard");
@@ -100,13 +99,15 @@ function setDroppable() {
 function figureSelector() {
     let select = $("#figuremaker");
     let spawnbox = $(".spawn-figure-box");
-    spawnbox.html(`<div id="f10001" class ="figure">${select.val()}</div>`);
+    let value = select.val();
+    spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
     select.change(function () {
         let value = select.val();
         charactersArray[10001] = value;
         spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
         setDraggable();
         console.log(value);
+        console.log(figureDict[String(value)]);
     })
 }
 
@@ -136,7 +137,8 @@ function moveFigure(frCoord, toCoord) {
         saveState();
     } else {
         let dmgAndText = weaponSelector();
-        console.log(`${charactersArray[frCoord]}№${frCoord} attaced ${charactersArray[toCoord]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
+        console.log(charactersArray[frCoord]);
+        console.log(`${figureDict[charactersArray[frCoord]]}№${frCoord} attaced ${figureDict[charactersArray[toCoord]]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
         showFigureAt(frCoord,figure);
     }
 }
