@@ -37,8 +37,8 @@
 .figure > img {
     position: relative;
     bottom: 5px;
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
 }
 
 .cell-water{
@@ -166,7 +166,7 @@
 }
 
 .cell-city-wall1{
-    background-image:url("../pictures/city-wall1.png");
+    background-image:url("../pictures/bar-wall.png");
 }
 
 .cell-city-wall2{
