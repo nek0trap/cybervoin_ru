@@ -37,6 +37,18 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $registraionDate;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $urlAvatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,5 +128,37 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRegistraionDate(): int
+    {
+        return $this->registraionDate;
+    }
+
+    /**
+     * @param int $registraionDate
+     */
+    public function setRegistraionDate(int $registraionDate): void
+    {
+        $this->registraionDate = $registraionDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlAvatar(): string
+    {
+        return $this->urlAvatar;
+    }
+
+    /**
+     * @param string $urlAvatar
+     */
+    public function setUrlAvatar(string $urlAvatar): void
+    {
+        $this->urlAvatar = $urlAvatar;
     }
 }
