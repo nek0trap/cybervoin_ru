@@ -1,7 +1,6 @@
-const chessDict = {
-    rook: '&#9814;',
-    bishop: '&#9815;',
-    pawn: '&#9817;'
+const figureDict = {
+    "<i class='bi bi-person'></i>": "Rook",
+    "<img src='/icons/WomanSoloFull.svg' alt='WomanFull'/>": "Woman",
 }
 
 const chessBoard = $("#chessBoard");
@@ -17,11 +16,44 @@ $(document).ready(function () {
     let cnt = 0;
     let lineWidth = values.length / lineLength;
     const ground = {
-        0 :"dirt",
-        1: "wall",
-        2: "swamp",
-        3: "water",
-        4: "white"
+        0 :"bar-chair",
+        1: "bar-wall",
+        2: "window-bar",
+        3: "bar-toilet",
+        4: "bar-floor",
+        5: 'floor-toilet',
+        6: "door-toilet",
+        7: "bar-door",
+        8: "bar-table",
+        9: "bar-divan",
+        'a': "bar-stul-1",
+        'b': "bar-stul-2",
+        'c': "wallground",
+        'd': "ground1",
+        'e': "wallgraf",
+        'f': "wallground2",
+        'g': "wallgraf2",
+        'z': 'ground2',
+        'x': 'ground3',
+        'v': 'ground4',
+        'k': 'wallgraf3',
+        'h' :'wallgraf4',
+        'n' : 'trash1',
+        'm':'trash2',
+        'r' :'cover1',
+        't' :'cover2',
+        'y' :'cover3',
+        'l':'city-ground',
+        'p':'city-wall1',
+        'o' :'city-wall2',
+        's':'safe',
+        'w' :'cityshelf1',
+        'q':'cityshelf2',
+        'i':'citydoor1',
+        'u':'citydoor2',
+        '<':'cityfloor1',
+        '>':'cityfloor2',
+        '@':'citytrap',
     };
     for (let i = 1; i < lineWidth + 1; i++) {
         chessBoard.append("<br>");
@@ -67,13 +99,15 @@ function setDroppable() {
 function figureSelector() {
     let select = $("#figuremaker");
     let spawnbox = $(".spawn-figure-box");
-    spawnbox.html(`<div id="f10001" class ="figure">${select.val()}</div>`);
+    let value = select.val();
+    spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
     select.change(function () {
         let value = select.val();
         charactersArray[10001] = value;
         spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
         setDraggable();
         console.log(value);
+        console.log(figureDict[String(value)]);
     })
 }
 
@@ -103,7 +137,8 @@ function moveFigure(frCoord, toCoord) {
         saveState();
     } else {
         let dmgAndText = weaponSelector();
-        console.log(`${charactersArray[frCoord]}№${frCoord} attaced ${charactersArray[toCoord]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
+        console.log(charactersArray[frCoord]);
+        console.log(`${figureDict[charactersArray[frCoord]]}№${frCoord} attaced ${figureDict[charactersArray[toCoord]]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
         showFigureAt(frCoord,figure);
     }
 }

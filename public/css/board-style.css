@@ -27,16 +27,23 @@
     justify-content: center;
     color: white;
     font-size: 60px;
+    background-size: 64px;
 }
 
 .figure {
     cursor: pointer;
-    color: red;
+}
+
+.figure > img {
+    position: relative;
+    bottom: 5px;
+    width: 64px;
+    height: 64px;
 }
 
 .cell-water{
     background-image: url("../pictures/toilet.png");
-    background-size: 70px;
+    background-size: 64px;
     width: 64px;
     height: 64px;
 }
@@ -62,6 +69,137 @@
     height: 64px;
 }
 
-.cell-swamp {
-    background-color: darkolivegreen;
+.cell-window-bar {
+    background-image: url("../pictures/window_Bar.png");
+}
+
+.cell-floor-toilet{
+    background-image: url("../pictures/floor-toilet.png");
+}
+.cell-door-toilet{
+    background-image: url("../pictures/door-toilet.png");
+}
+.cell-bar-stul-2{
+    background-image:url("../pictures/bar-stul-2.jpg");
+
+}
+.cell-bar-table{
+    background-image:url("../pictures/bar-table.png");
+}
+.cell-bar-door{
+    background-image:url("../pictures/door-bar.png");
+
+}
+.cell-bar-wall {
+    background-image: url("../pictures/bar-wall.png");
+}
+.cell-bar-floor{
+    background-image:url("../pictures/bar-floor.png");
+}
+.cell-bar-divan{
+    background-image:url("../pictures/bar-divan.png");
+}
+.cell-bar-chair{
+    background-image:url("../pictures/bar-chair.png");
+}
+.cell-bar-toilet{
+    background-image:url("../pictures/bar-toilet.png");
+}
+.cell-bar-stul-1{
+    background-image:url("../pictures/bar-stul-1.jpg");
+}
+.cell-wallground{
+    background-image:url("../pictures/wallground.png");
+}
+.cell-wallground2{
+    background-image:url("../pictures/wallground2.png");
+}
+.cell-ground1{
+    background-image:url("../pictures/ground1.png");
+}
+.cell-ground2{
+    background-image:url("../pictures/ground2.png");
+}
+.cell-ground3{
+    background-image:url("../pictures/ground3.png");
+}
+.cell-ground4{
+    background-image:url("../pictures/ground4.png");
+}
+
+.cell-wallgraf{
+    background-image:url("../pictures/wallgraf.png");
+}
+
+.cell-wallgraf2{
+    background-image:url("../pictures/wallgraf2.png");
+}
+
+.cell-wallgraf3{
+    background-image:url("../pictures/wallgraf3.png");
+}
+
+.cell-wallgraf4{
+    background-image:url("../pictures/wallgraf4.png");
+}
+
+.cell-cover1{
+    background-image:url("../pictures/cover1.png");
+}
+
+
+.cell-cover2{
+    background-image:url("../pictures/cover2.png");
+}
+
+.cell-cover3{
+    background-image:url("../pictures/cover3.png");
+}
+
+
+.cell-trash1{
+    background-image:url("../pictures/trash1.png");
+}
+
+.cell-trash2{
+    background-image:url("../pictures/trash2.png");
+}
+
+.cell-city-wall1{
+    background-image:url("../pictures/city-wall1.png");
+}
+
+.cell-city-wall2{
+    background-image:url("../pictures/city-wall2.png");
+}
+
+.cell-city-ground{
+    background-image:url("../pictures/city-ground.png");
+}
+.cell-safe{
+    background-image:url("../pictures/safe.png");
+}
+.cell-citydoor1{
+    background-image:url("../pictures/citydoor1.png");
+}
+
+.cell-citydoor2{
+    background-image:url("../pictures/citydoor2.png");
+}
+
+
+.cell-cityshelf1{
+    background-image:url("../pictures/cityshelf1.png");
+}
+.cell-cityshelf2{
+    background-image:url("../pictures/cityshelf2.png");
+}
+.cell-cityfloor1{
+    background-image:url("../pictures/cityfloor1.png");
+}
+.cell-cityfloor2{
+    background-image:url("../pictures/cityfloor2.png");
+}
+.cell-citytrap{
+    background-image:url("../pictures/citytrap.png");
 }
