@@ -1,16 +1,47 @@
 {% extends 'base.html.twig'%}
 {% block body %}
-    member id:
-    {{ member.id }}<br>
-    member name:
-    {{ member.username }}<br>
-    <select name="" id="">
-
-
-    {% for role in member.roles %}
-        <option value="">{{ role }}</option>
-    {% endfor %}
-    </select>
-    <br><br>
-    <a href="/">back to main menu</a>
+    <div style="
+    max-width: 70%;
+    margin: 0 auto;">
+        <div style="font-size: 30px">member id: {{ member.id }}</div>
+        <div style="font-size: 30px">member name: {{ member.username }}</div>
+        <select name="" id="">
+        {% for role in member.roles %}
+            <option value="">{{ role }}</option>
+        {% endfor %}
+        </select>
+        <br><br>
+        <a href="/">back to main menu</a>
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="footer-bottom">
+        <div class="footer__main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <b>Полезные ссылки</b> <br><br>
+                        <a href="/faq">FAQ</a> <br>
+                        <a href="/admin/help">Документация для администратора</a> <br>
+                        <a href="/gamemaster/help">Документация для гейммастера</a> <br>
+                        <a href="/user/help">Документация для пользователя</a> <br>
+                        <a href="/documation/info">Правовая информация</a> <br>
+                        <a href="/documation/rights">Правовая документация</a> <br>
+                    </div>
+                    <div class="col">
+                        <b>Навигация по сайту</b> <br><br>
+                        <a href="/mm">Главное меню</a> <br>
+                        <a href="/admin/panel">Панель администрация</a> <br>
+                        <a href="/gamemaster/panel">Панель гейммастера</a> <br>
+                    </div>
+                    <div class="col">
+                        <b>Социальные сети</b> <br><br>
+                        <a href="#">Группа ВК</a> <br>
+                        <a href="#">YouTube канал</a> <br>
+                        <a href="#">наш Forum</a> <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

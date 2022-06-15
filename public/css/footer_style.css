@@ -4,6 +4,15 @@
     clear: both;
 }
 
+.footer-bottom {
+    background-color: #e1e1e1;
+    min-height: 270px;
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    min-width: 100%;
+}
+
 .footer__main {
     width: 70%;
     margin: 0 auto;
