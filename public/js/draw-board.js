@@ -55,7 +55,7 @@ $(document).ready(function () {
         '>':'cityfloor2',
         '@':'citytrap',
     };
-    for (let i = 1; i < lineWidth + 1; i++) {
+    for (let i = 10; i < lineWidth + 10; i++) {
         chessBoard.append("<br>");
         for (let j = 0; j < lineLength; j++) {
             chessBoard.append(divSquare
