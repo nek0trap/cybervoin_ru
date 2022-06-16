@@ -43,7 +43,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/characters/list", name="admin_char_list")
+     * @Route("/characters/list", name="admin_char_list")
      */
     public function showCharacter(): Response
     {
@@ -58,7 +58,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/characters/{id}", name="admin_char_byId")
+     * @Route("/characters/{id}", name="admin_char_byId")
      */
     public function charByID($id): Response
     {
@@ -74,7 +74,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/characters/{id}/edit", name="admin_char_byId_edit")
+     * @Route("/characters/{id}/edit", name="admin_char_byId_edit")
      */
     public function editFormCharByID($id): Response
     {
@@ -90,7 +90,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/characters/{id}/delete", name="admin_char_byId_delete")
+     * @Route("/characters/{id}/delete", name="admin_char_byId_delete")
      */
     public function deleteCharById($id): Response
     {

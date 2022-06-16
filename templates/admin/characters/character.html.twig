@@ -1,17 +1,15 @@
 {% extends 'base.html.twig' %}
 
-    {% block stylesheets %}
+
+{% block body %}
+    <body style="margin: 0; padding: 0">
+    <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link href="{{ asset('/css/character-style.css') }}" rel="stylesheet"/>
-    {% endblock %}
-{% block body %}
-    <a href="{{ path("admin_char_byId_edit", {"id": charcter.id}) }}">Edit Character</a>
-    <a href="{{ path("admin_char_byId_delete", {"id": charcter.id}) }}">Delete Character</a>
-    <div class="row">
+    </head>
+    <div class="row" style="margin-bottom: 150px">
         <div class="logo-and-userpic col-2">
-            <div class="logo">Logotipchik</div>
-            <div class="userpic">User avatar</div>
-            <div class="character-name">{{ charcter.name }} {{ charcter.id }}</div>
+            <div class="character-name">{{ charcter.name }}</div>
         </div>
         <div class="col">
             <div class="row">
@@ -40,11 +38,16 @@
             <div class="3rd-row row">
                 <div class="col">
                     <div class="other-label">Skills</div>
-                    {#                    {% for skill in charcter.skills %}#}
-                    <div class="other-box">
-                        {#                            {{ skill }}#}
-                    </div>
-                    {#                    {% endfor %}#}
+                    {% for key, gun in charcter.skills %}
+                        <div class="row" style="padding: 0 10px 0 10px; margin-top: 10px">
+                            <div class="col other-box" style="margin-right: 10px">
+                                {{ key }}
+                            </div>
+                            <div class="col other-box">
+                                {{ gun }}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="col">
                     <div class="other-label">Armor</div>
@@ -82,25 +85,26 @@
                 </div>
             </div>
         </div>
+        <div class="side-row row">
+            <div class="col bio-box">
+                <div class="other-label">Bio</div>
+                <div class="other-box" style="margin-top: 10px">{{ charcter.bio }}</div>
+            </div>
+            <div class="col-3">
+                <div class="other-label">Cyberware</div>
+                {% for cyberware in charcter.cyberware %}
+                    <div class="name-class other-label" style="margin-top: 10px">{{ cyberware.name }}</div>
+                    <div class="other-box">{{ cyberware.description }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-3">
+                <div class="other-label ">Gear</div>
+                {% for gear in charcter.gear %}
+                    <div class="name-class other-label" style="margin-top: 10px">{{ gear.name }}</div>
+                    <div class="other-box">{{ gear.description }}</div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <div class="side-row row">
-        <div class="col bio-box">
-            <div class="other-label">Bio</div>
-            <div class="other-box" style="margin-top: 10px">{{ charcter.bio }}</div>
-        </div>
-        <div class="col-3">
-            <div class="other-label">Cyberware</div>
-            {% for cyberware in charcter.cyberware %}
-                <div class="name-class other-label" style="margin-top: 10px">{{ cyberware.name }}</div>
-                <div class="other-box">{{ cyberware.description }}</div>
-            {% endfor %}
-        </div>
-        <div class="col-3">
-            <div class="other-label ">Gear</div>
-            {% for gear in charcter.gear %}
-                <div class="name-class other-label" style="margin-top: 10px">{{ gear.name }}</div>
-                <div class="other-box">{{ gear.description }}</div>
-            {% endfor %}
-        </div>
-    </div>
+    </body>
 {% endblock %}
