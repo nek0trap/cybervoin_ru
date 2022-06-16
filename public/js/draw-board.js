@@ -170,7 +170,6 @@ function showFigureAt(coord, myFigure) {
 function tryToKill(frCoord, toCoord) {
     let damage = $("#weaponmaker").val();
     let randomInt = getRandomInt(1, damage);
-    console.log(randomInt);
     let killContainer = $(`#c${toCoord}`);
     if (armorDict[charactersArray[toCoord]] < randomInt) {
         console.log("kill");
