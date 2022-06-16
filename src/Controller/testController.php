@@ -29,7 +29,7 @@ class testController extends AbstractController
 
 
     /**
-     * @Route("/showPage")
+     * @Route("/showPage", name="show_template")
      */
     public function showPage(): Response
     {
