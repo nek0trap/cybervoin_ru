@@ -15,12 +15,13 @@
                 <div class="row">
                     <div style="margin-bottom: 10px" class="col-7">
                         <select class="form-select-md" id="figuremaker" style="width: 160px">
-                            <option value="<img src='{{ asset('icons/WomanSoloFull.svg') }}' alt='WomanFull'/>">Rook</option>
-                            <option value="&#9815;" selected="selected">Bishop</option>
-                            <option value="&#9817;">Pawn</option>
+                            <option value="<img src='{{ asset('icons/WomanSolo.svg') }}' alt='WomanFull'/>">Solo</option>
+                            <option value="<img src='{{ asset('icons/Netrunner.svg') }}' alt='Netrunner'/>" selected="selected">Netrunner</option>
+                            <option value="<img src='{{ asset('icons/Mechanic.svg') }}' alt='Mechanic'/>">Mechanic</option>
+                            <option value="<img src='{{ asset('icons/Nomad.svg') }}' alt='Nomad'/>">Nomad</option>
                         </select>
                     </div>
-                    <div class="spawn-figure-box my-auto col-1"></div>
+                    <div class="spawn-figure-box my-auto col-1" style="width: 80px; height: 80px"></div>
                 </div>
             </div>
             <div class="col-2 m-3">

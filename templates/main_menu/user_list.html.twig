@@ -1,38 +1,36 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <table>
-        <thead>
-        <tr>
-            <td>
-                id
-            </td>
-            <td>
-                name
-            </td>
-            <td>
-                roles
-            </td>
-            <td>
-                last visited
-            </td>
-        </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr>
-                    <td>{{ member.id }}</td>
-                    <td>{{ member.username }}</td>
-                    <td>
-                        <select name="" id="">
-                            {% for role in member.roles %}
-                                <option value="">{{ role }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/">back to main menu</a>
+    <div style="width: 70%; margin: 0 auto;">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    name
+                </td>
+                <td>
+                    roles
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                    <tr>
+                        <td>{{ member.id }}</td>
+                        <td>{{ member.username }}</td>
+                        <td>
+                            <select name="" id="">
+                                {% for role in member.roles %}
+                                    <option value="">{{ role }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/">back to main menu</a>
+    </div>
 {% endblock %}
