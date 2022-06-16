@@ -24,13 +24,16 @@
                     {% if is_granted('ROLE_USER') %}
                         <div class="side-div"><a href="{{ path("member_profile", {"id": app.user.id}) }}"><div class="p-2">My Profile</div></a></div>
                         <div class="side-div"><a href="{{ path("members_list") }}"><div class="p-2">User List</div></a></div>
+                        <div class="side-div"><a href="/showPage"><div class="p-2">Libary</div></a></div>
                     {% endif %}
+                    <br>
                     {% if is_granted('ROLE_GAMEMASTER') %}
                         <div class="side-div"><a href="{{ path("gamemaster_create_char") }}"><div class="p-2">Create Character for game</div></a></div>
                         <div class="side-div"><a href="{{ path("gamemaster_character_list") }}"><div class="p-2">Character List</div></a></div>
                         <div class="side-div"><a href="{{ path("gamemaster_create_game") }}"><div class="p-2">Create new game</div></a></div>
                         <div class="side-div"><a href="{{ path("gamemaster_list_game") }}"><div class="p-2">View all game</div></a></div>
                     {% endif %}
+                    <br>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="side-div"><a href="/admin"><div class="p-2">Admin Panel</div></a></div>
                         <div class="side-div"><a href="/admin/help"><div class="p-2">Admins Help</div></a></div>
