@@ -44,18 +44,18 @@ $(document).ready(function () {
         't' :'cover2',
         'y' :'cover3',
         'l':'city-ground',
-        'p':'city-wall1',
+        'p':'wallground',
         'o' :'city-wall2',
         's':'safe',
         'w' :'cityshelf1',
         'q':'cityshelf2',
-        'i':'citydoor1',
+        'I':'citydoor1',
         'u':'citydoor2',
         '<':'cityfloor1',
         '>':'cityfloor2',
         '@':'citytrap',
     };
-    for (let i = 1; i < lineWidth + 1; i++) {
+    for (let i = 10; i < lineWidth + 10; i++) {
         chessBoard.append("<br>");
         for (let j = 0; j < lineLength; j++) {
             chessBoard.append(divSquare
