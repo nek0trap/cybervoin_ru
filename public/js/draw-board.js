@@ -1,6 +1,15 @@
 const figureDict = {
-    "<i class='bi bi-person'></i>": "Rook",
-    "<img src='/icons/WomanSoloFull.svg' alt='WomanFull'/>": "Woman",
+    "<img src='/icons/WomanSolo.svg' alt='WomanFull'/>": "(Solo)",
+    "<img src='/icons/Mechanic.svg' alt='Mechanic'/>": "(Mechanic)",
+    "<img src='/icons/Netrunner.svg' alt='Netrunner'/>": "(Netrunner)",
+    "<img src='/icons/Nomad.svg' alt='Nomad'/>": "(Nomad)",
+}
+
+const armorDict = {
+    "<img src='/icons/WomanSolo.svg' alt='WomanFull'/>": 3,
+    "<img src='/icons/Mechanic.svg' alt='Mechanic'/>": 9,
+    "<img src='/icons/Netrunner.svg' alt='Netrunner'/>": 12,
+    "<img src='/icons/Nomad.svg' alt='Nomad'/>": 16,
 }
 
 const chessBoard = $("#chessBoard");
@@ -68,6 +77,12 @@ $(document).ready(function () {
     setDroppable();
 });
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+}
+
 function setDraggable() {
     $('.figure').draggable();
 }
@@ -79,7 +94,6 @@ function setDroppable() {
             let toCoord = this.id.substring(1);
             let frCell = $(`#c${frCoord}`);
             if (frCell.hasClass("cell-water")) {
-                console.log('obosralsya');
             }
             ui.draggable.remove();
             moveFigure(frCoord, toCoord);
@@ -106,8 +120,6 @@ function figureSelector() {
         charactersArray[10001] = value;
         spawnbox.html(`<div id="f10001" class ="figure">${value}</div>`);
         setDraggable();
-        console.log(value);
-        console.log(figureDict[String(value)]);
     })
 }
 
@@ -130,16 +142,21 @@ function moveFigure(frCoord, toCoord) {
     $(".spawn-figure-box").html(`<div id="f10001" class ="figure">${figuremaker.val()}</div>`);
     charactersArray[10001] = figuremaker.val();
     let figure = charactersArray[frCoord];
-    console.log(frCoord, toCoord);
-    if (charactersArray[toCoord] === 0) {
-        charactersArray[frCoord] = 0;
-        showFigureAt(toCoord,figure);
-        saveState();
+    if (frCoord !== toCoord) {
+        if (charactersArray[toCoord] === 0) {
+            charactersArray[frCoord] = 0;
+            showFigureAt(toCoord, figure);
+            saveState();
+        } else {
+            let shooter = charactersArray[frCoord];
+            let enemy = charactersArray[toCoord];
+            tryToKill(frCoord, toCoord);
+            let dmgAndText = weaponSelector();
+            console.log(`${figureDict[shooter]} attaced ${figureDict[enemy]} with ${dmgAndText[1]}`);
+            showFigureAt(frCoord, figure);
+        }
     } else {
-        let dmgAndText = weaponSelector();
-        console.log(charactersArray[frCoord]);
-        console.log(`${figureDict[charactersArray[frCoord]]}№${frCoord} attaced ${figureDict[charactersArray[toCoord]]}№${toCoord} with ${dmgAndText[1]} and deal ${dmgAndText[0]} damage`);
-        showFigureAt(frCoord,figure);
+        showFigureAt(frCoord, figure);
     }
 }
 
@@ -150,6 +167,19 @@ function showFigureAt(coord, myFigure) {
     setDraggable();
 }
 
+function tryToKill(frCoord, toCoord) {
+    let damage = $("#weaponmaker").val();
+    let randomInt = getRandomInt(1, damage);
+    console.log(randomInt);
+    let killContainer = $(`#c${toCoord}`);
+    if (armorDict[charactersArray[toCoord]] < randomInt) {
+        console.log("kill");
+        charactersArray[toCoord] = 0;
+        saveState();
+        killContainer.empty();
+    }
+}
+
 function saveState() {
     $.ajax({
         type: 'POST',
@@ -158,7 +188,6 @@ function saveState() {
             'charArray': charactersArray.toString(),
         },
         success: function(data) {
-            console.log(data);
         }
     });
     //console.log('post send', myUrl);
