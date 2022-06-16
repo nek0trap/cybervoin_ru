@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="63.91037"
+   height="62.442322"
+   viewBox="0 0 16.909618 16.521197"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="salo.svg"
+   inkscape:export-xdpi="25.420208"
+   inkscape:export-ydpi="25.420208"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.16832383,-0.23962258)">
+    <g
+       id="path235"
+       transform="matrix(0.25836554,0,0,0.25903917,0.15478237,0.18269986)">
+      <path
+         style="color:#000000;fill:#ffffff;stroke-width:0.529167;-inkscape-stroke:none;paint-order:fill markers stroke"
+         d="M 64.001535,32.109131 A 31.974562,31.889385 0 0 1 32.026974,63.998516 31.974562,31.889385 0 0 1 0.05241203,32.109131 31.974562,31.889385 0 0 1 32.026974,0.21974564 31.974562,31.889385 0 0 1 64.001535,32.109131 Z"
+         id="path5590" />
+      <g
+         id="g5546">
+        <path
+           style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.264583pt"
+           d="m 64.001535,33.432048 c -0.73025,0 -1.322916,-0.592667 -1.322916,-1.322917 0,-0.73025 0.592666,-1.322917 1.322916,-1.322917 0.73025,0 1.322917,0.608542 1.322917,1.322917 0,0.73025 -0.592667,1.322917 -1.322917,1.322917 z"
+           id="path5548"
+           sodipodi:nodetypes="sssss" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     transform="translate(-0.16832383,-0.23962258)">
+    <circle
+       style="fill:#000000;stroke-width:0.0685373"
+       id="path290"
+       cx="8.5795069"
+       cy="4.593298"
+       r="3.3012233" />
+    <ellipse
+       style="fill:#000000;stroke-width:0.0695806"
+       id="path294"
+       cx="8.4628067"
+       cy="12.168848"
+       rx="7.3177061"
+       ry="2.1934144" />
+  </g>
+</svg>
